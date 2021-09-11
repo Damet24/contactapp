@@ -10,5 +10,6 @@ public class Main {
         frame.setSize(650, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        System.out.println("hola mundo!");
     }
 }
