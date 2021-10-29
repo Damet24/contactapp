@@ -2,8 +2,10 @@ package contactapp.Formularios;
 
 import contactapp.Connector;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class FrmRegistrarse extends javax.swing.JFrame {
     
@@ -28,10 +30,10 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrarse");
@@ -69,17 +71,13 @@ public class FrmRegistrarse extends javax.swing.JFrame {
             }
         });
 
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNombre.setText("jTextField1");
-
         txtApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtApellido.setText("jTextField2");
 
         txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtCorreo.setText("jTextField3");
 
         txtClave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtClave.setText("jTextField4");
+
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +89,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(162, 162, 162))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +104,9 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
@@ -151,10 +149,18 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             stmt = reg.createStatement();
-            stmt.executeUpdate("INSERT INTO `users` (`name`, `last_name`, `email`, `password`) VALUES ('"
+            ResultSet rs = stmt.executeQuery("SELECT * FROM users where email= '" + txtCorreo.getText() + "'");
+            if(!rs.next()){
+                stmt.executeUpdate("INSERT INTO `users` (`name`, `last_name`, `email`, `password`) VALUES ('"
                     + txtNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtCorreo.getText() + "', '" + txtClave.getText() + "') ");
+                JOptionPane.showMessageDialog(this, "Usuario registrado con exito!");
+                ChangeWindow();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "El correo ya esta en uso.", "Error", JOptionPane.WARNING_MESSAGE);
+            }
         }catch(SQLException e){
-            System.out.println("connection error: " + e.getMessage());
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
