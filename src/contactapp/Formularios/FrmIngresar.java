@@ -1,9 +1,16 @@
 package contactapp.Formularios;
 
+import contactapp.Connector;
+import java.sql.Connection;
+
 public class FrmIngresar extends javax.swing.JFrame {
 
+    Connector con;
+    
     public FrmIngresar() {
         initComponents();
+        con = new Connector();
+        Connection reg = con.getConnecton();
     }
 
     @SuppressWarnings("unchecked")
@@ -99,6 +106,7 @@ public class FrmIngresar extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         FrmRegistrarse Registrarse = new FrmRegistrarse();
         Registrarse.setVisible(true);
+        con.Disconnect();
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
