@@ -26,7 +26,7 @@ public class Connector {
             Class.forName(driver);
             Conn = DriverManager.getConnection(url, user, password);
             if(Conn != null){
-                System.out.println("Conectao papa");
+                System.out.println("Coneccion establecida!");
             }
         }catch(ClassNotFoundException | SQLException e){
             System.out.println("error: " + e.getMessage());
@@ -40,7 +40,7 @@ public class Connector {
     public void Disconnect(){
         Conn = null;
         if(Conn == null){
-                System.out.println("Desconectao papa");
+                System.out.println("Se ha desconectado");
             }
     }
 }
