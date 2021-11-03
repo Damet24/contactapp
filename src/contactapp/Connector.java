@@ -40,7 +40,7 @@ public class Connector {
     public void Disconnect(){
         Conn = null;
         if(Conn == null){
-                System.out.println("Se ha desconectado");
+                System.out.println("Se ha desconectado:");
             }
     }
 }

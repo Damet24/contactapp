@@ -1,5 +1,6 @@
 package contactapp;
 
+import contactapp.Formularios.FrmRegistrarse;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -10,5 +11,10 @@ public class ContactApp {
         if(Opcion == JOptionPane.YES_OPTION){
             rootPane.dispose();
         }
+    }
+    
+    static public void CambiarFormulario(JFrame actual, JFrame siguiente){
+        siguiente.setVisible(true);
+        actual.dispose();
     }
 }
