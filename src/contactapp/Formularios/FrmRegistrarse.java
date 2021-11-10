@@ -1,6 +1,6 @@
 package contactapp.Formularios;
 
-import contactapp.Connector;
+import contactapp.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 
 public class FrmRegistrarse extends javax.swing.JFrame {
     
-    Connector con;
+    Conector con;
     Statement stmt;
     Connection reg;
 
     public FrmRegistrarse() {
         initComponents();
-        con = new Connector();
-        reg = con.getConnecton();
+        con = new Conector();
+        reg = con.getConector();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,12 +30,12 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        btnRegistrarse = new javax.swing.JButton();
+        lblIniciarSesion = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtClave = new javax.swing.JPasswordField();
+        txtContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrarse");
@@ -56,20 +56,20 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Contraseña:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Registrarse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarse.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarseActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Iniciar Sesión");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblIniciarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblIniciarSesion.setText("Iniciar Sesión");
+        lblIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                lblIniciarSesionMouseClicked(evt);
             }
         });
 
@@ -86,8 +86,8 @@ public class FrmRegistrarse extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(173, 173, 173)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIniciarSesion)
+                    .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -102,7 +102,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                     .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(txtClave))
+                    .addComponent(txtContraseña))
                 .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
@@ -125,11 +125,11 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel6)
+                .addComponent(lblIniciarSesion)
                 .addGap(50, 50, 50))
         );
 
@@ -137,21 +137,22 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        ChangeWindow();
-    }//GEN-LAST:event_jLabel6MouseClicked
+    private void lblIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIniciarSesionMouseClicked
+        ContactApp.CambiarFormulario(this, new FrmIngresar());
+        con.Desconectar();
+    }//GEN-LAST:event_lblIniciarSesionMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         try{
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users where email= '" + txtCorreo.getText() + "'");
             if("".equals(ValidorCampos())){
                 if(!rs.next()){
                     stmt.executeUpdate("INSERT INTO `users` (`name`, `last_name`, `email`, `password`) VALUES ('"
-                    + txtNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtCorreo.getText() + "', '" + txtClave.getText() + "') ");
+                    + txtNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtCorreo.getText() + "', '" + txtContraseña.getText() + "') ");
                     JOptionPane.showMessageDialog(this, "Usuario registrado con exito!");
-                    ChangeWindow();
+                    ContactApp.CambiarFormulario(this, new FrmIngresar());
+                    con.Desconectar();
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "El correo ya esta en uso.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -163,7 +164,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private String ValidorCampos(){
         String error = "";
@@ -178,14 +179,8 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         else {
             if(!matcher.matches()) error = error + "El correo es invalido.\n";
         }
-        if("".equals(txtClave.getText())) error = error + "La contraseña es un campo requerido.\n";
+        if("".equals(txtContraseña.getText())) error = error + "La contraseña es un campo requerido.\n";
         return error;
-    }
-    public void ChangeWindow(){
-        FrmIngresar Ingresar = new FrmIngresar();
-        Ingresar.setVisible(true);
-        con.Disconnect();
-        this.dispose();
     }
     
     public static void main(String args[]) {
@@ -221,15 +216,15 @@ public class FrmRegistrarse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblIniciarSesion;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

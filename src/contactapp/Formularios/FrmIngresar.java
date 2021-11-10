@@ -1,23 +1,24 @@
 package contactapp.Formularios;
 
-import contactapp.Connector;
+import contactapp.Conector;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import contactapp.ContactApp;
+import contactapp.Usuario;
 
 public class FrmIngresar extends javax.swing.JFrame {
 
-    Connector con;
+    Conector con;
     Statement stmt;
     Connection reg;
     
     public FrmIngresar() {
         initComponents();
-        con = new Connector();
-        reg = con.getConnecton();
+        con = new Conector();
+        reg = con.getConector();
     }
 
     @SuppressWarnings("unchecked")
@@ -115,21 +116,28 @@ public class FrmIngresar extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         ContactApp.CambiarFormulario(this, new FrmRegistrarse());
+        con.Desconectar();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String correo = "";
         String clave = "";
+        String id = "";
+        String nombre = "";
+        Usuario usuario = null;
         try {
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users where email='" + txtCorreo.getText() + "'");
             while(rs.next()){
                 correo = rs.getString("email");
                 clave = rs.getString("password");
+                id = rs.getString("id_user");
+                nombre = rs.getString("name");
+                usuario = new Usuario(id, nombre, correo);
             }            
             if(txtClave.getText().equals(clave)){
-                ContactApp.CambiarFormulario(this, new FrmPrincipal());
+                ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
             }else {
                 JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
             }
