@@ -1,8 +1,6 @@
 package contactapp;
 
-import contactapp.Formularios.FrmRegistrarse;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class ContactApp {
 

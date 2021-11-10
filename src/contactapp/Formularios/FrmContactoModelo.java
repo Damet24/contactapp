@@ -1,8 +1,8 @@
 package contactapp.Formularios;
 
-public class FrmContactoModelo2 extends javax.swing.JPanel {
+public class FrmContactoModelo extends javax.swing.JPanel {
 
-    public FrmContactoModelo2(String nombre, String numero) {
+    public FrmContactoModelo(String nombre, String numero) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);

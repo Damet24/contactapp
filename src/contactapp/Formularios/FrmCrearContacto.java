@@ -96,6 +96,11 @@ public class FrmCrearContacto extends javax.swing.JFrame {
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAgregarCampoTelefono.setText("+");
 
@@ -194,6 +199,11 @@ public class FrmCrearContacto extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));        
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private String ValidorCampos(){
         String error = "";

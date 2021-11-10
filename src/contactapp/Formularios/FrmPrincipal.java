@@ -165,14 +165,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnNuevoContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoContactoActionPerformed
+        con.Desconectar();
         ContactApp.CambiarFormulario(this, new FrmCrearContacto(usuario));
     }//GEN-LAST:event_btnNuevoContactoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        con.Desconectar();
         ContactApp.CambiarFormulario(this, new FrmIngresar());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        con.Desconectar();
         ContactApp.CambiarFormulario(this, new FrmCrearContacto(usuario));
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -183,7 +186,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             int cont = 0;
             while(rs.next()){
                 System.out.println(rs.getString("id_contact"));
-                ShowPanel(new FrmContactoModelo2(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
+                ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
                 cont++;
             }
         }catch(SQLException e){
