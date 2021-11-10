@@ -1,8 +1,6 @@
 package contactapp;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Conector {
     
@@ -21,7 +19,7 @@ public class Conector {
                 System.out.println("Conexion: establecida");
             }
         }catch(ClassNotFoundException | SQLException e){
-            System.out.println("error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
     

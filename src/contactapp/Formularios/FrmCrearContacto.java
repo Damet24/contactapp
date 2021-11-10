@@ -1,13 +1,9 @@
 package contactapp.Formularios;
 
 import contactapp.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.regex.*;
+import javax.swing.JOptionPane; 
 
 public class FrmCrearContacto extends javax.swing.JFrame {
 
@@ -185,9 +181,9 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement(); 
             if("".equals(ValidorCampos())){
-                String sql1 = "call insertar_contacto('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText()
-                        + "', '" + txtSegundoApellido.getText() + "', '', 'personal', '" + txtTelefonoPersonal.getText() + "', 'personal', '" + txtCorreoPersonal.getText() + "', 0, " + usuario.getId() + ");";
-                stmt.executeUpdate(sql1);
+                String sql = "call insertar_contacto('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText()
+                        + "', '" + txtSegundoApellido.getText() + "', '#', 'personal', '" + txtTelefonoPersonal.getText() + "', 'personal', '" + txtCorreoPersonal.getText() + "', 0, " + usuario.getId() + ");";
+                stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Contacto guardado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
                 ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
                 con.Desconectar();                                

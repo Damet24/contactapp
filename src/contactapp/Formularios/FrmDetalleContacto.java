@@ -2,14 +2,25 @@ package contactapp.Formularios;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import contactapp.*;
+import java.sql.*;
 
 public class FrmDetalleContacto extends javax.swing.JFrame {
 
+    Conector con;
+    Statement stmt;
+    Connection reg;
+    String Nombre, SegundoNombre, Apellido, SegundoApellido, TelefonoPersonal, CorreoPersonal, TagCorreo, TagTelefono, NombreCompleto;
+    
     public FrmDetalleContacto() {
         initComponents();
         pnlDivisor.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor3.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+        con = new Conector();
+        reg = con.getConector();
+        lblTelefonoOpcional.setText("");
+        lblTagTelefonoOpcional.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -17,17 +28,17 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         pnlDivisor = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblTelefonoPersonal = new javax.swing.JLabel();
+        lblTagTelefono = new javax.swing.JLabel();
+        lblTelefonoOpcional = new javax.swing.JLabel();
+        lblTagTelefonoOpcional = new javax.swing.JLabel();
         pnlDivisor2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblCorreoPersonal = new javax.swing.JLabel();
+        lblTagCorreo = new javax.swing.JLabel();
         pnlDivisor3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -48,26 +59,26 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("jLabel1");
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblNombre.setText("jLabel1");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Editar");
+        btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditar.setText("Editar");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Eliminar");
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("jLabel2");
+        lblTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTelefonoPersonal.setText("jLabel2");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("jLabel3");
+        lblTagTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTagTelefono.setText("jLabel3");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("jLabel6");
+        lblTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTelefonoOpcional.setText("jLabel6");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("jLabel7");
+        lblTagTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTagTelefonoOpcional.setText("jLabel7");
 
         javax.swing.GroupLayout pnlDivisorLayout = new javax.swing.GroupLayout(pnlDivisor);
         pnlDivisor.setLayout(pnlDivisorLayout);
@@ -75,31 +86,31 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisorLayout.createSequentialGroup()
                 .addGroup(pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(lblTelefonoPersonal)
+                    .addComponent(lblTagTelefono)
+                    .addComponent(lblTelefonoOpcional)
+                    .addComponent(lblTagTelefonoOpcional))
                 .addGap(0, 0, 0))
         );
         pnlDivisorLayout.setVerticalGroup(
             pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblTelefonoPersonal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblTagTelefono)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel6)
+                .addComponent(lblTelefonoOpcional)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblTagTelefonoOpcional)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("jLabel4");
+        lblCorreoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCorreoPersonal.setText("jLabel4");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("jLabel5");
+        lblTagCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTagCorreo.setText("jLabel5");
 
         javax.swing.GroupLayout pnlDivisor2Layout = new javax.swing.GroupLayout(pnlDivisor2);
         pnlDivisor2.setLayout(pnlDivisor2Layout);
@@ -107,17 +118,17 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisor2Layout.createSequentialGroup()
                 .addGroup(pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(lblCorreoPersonal)
+                    .addComponent(lblTagCorreo))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlDivisor2Layout.setVerticalGroup(
             pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisor2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(lblCorreoPersonal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblTagCorreo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -146,7 +157,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(202, 202, 202)
-                .addComponent(jLabel1)
+                .addComponent(lblNombre)
                 .addGap(274, 274, 274))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -156,9 +167,9 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(pnlDivisor3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(202, 202, 202)
@@ -172,7 +183,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
+                    .addComponent(lblNombre)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(pnlDivisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,8 +193,8 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addComponent(pnlDivisor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
 
@@ -191,6 +202,54 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void ObtenerDatos(){
+        try{
+            int idContact = 1;
+            String sql1 = "select * from contacts where id_contact = " + idContact + " limit 1;";
+            String sql2 = "select * from numbers where fk_contact = " + idContact + " limit 1;";
+            String sql3 = "select * from emails where fk_contact = " + idContact + " limit 1;";             
+            stmt = reg.createStatement();            
+            ResultSet rs1 = stmt.executeQuery(sql1);
+            // contactos
+            while(rs1.next()){
+                Nombre = rs1.getString("name");
+                SegundoNombre = rs1.getString("second_name");
+                Apellido = rs1.getString("last_name");
+                SegundoApellido = rs1.getString("second_last_name");                
+            }
+            stmt = reg.createStatement();            
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            // numeros
+            while(rs2.next()){
+                TelefonoPersonal = rs2.getString("number");
+                TagTelefono = rs2.getString("tag");                   
+            }
+            stmt = reg.createStatement();            
+            ResultSet rs3 = stmt.executeQuery(sql3);                       
+            // correos
+            while(rs3.next()){
+                CorreoPersonal = rs3.getString("email");
+                TagCorreo = rs3.getString("tag");                
+            }
+            MostrarDatos();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+        
+    public void MostrarDatos(){
+        try{
+            NombreCompleto = Nombre + " " + Apellido;
+            lblNombre.setText(NombreCompleto);
+            lblTelefonoPersonal.setText(TelefonoPersonal);
+            lblTagTelefono.setText(TagTelefono);
+            lblCorreoPersonal.setText(CorreoPersonal);
+            lblTagCorreo.setText(TagCorreo);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -224,17 +283,17 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCorreoPersonal;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTagCorreo;
+    private javax.swing.JLabel lblTagTelefono;
+    private javax.swing.JLabel lblTagTelefonoOpcional;
+    private javax.swing.JLabel lblTelefonoOpcional;
+    private javax.swing.JLabel lblTelefonoPersonal;
     private javax.swing.JPanel pnlDivisor;
     private javax.swing.JPanel pnlDivisor2;
     private javax.swing.JPanel pnlDivisor3;

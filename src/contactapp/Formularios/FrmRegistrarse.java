@@ -1,12 +1,8 @@
 package contactapp.Formularios;
 
 import contactapp.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.sql.*;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 
 public class FrmRegistrarse extends javax.swing.JFrame {
@@ -138,8 +134,8 @@ public class FrmRegistrarse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIniciarSesionMouseClicked
-        ContactApp.CambiarFormulario(this, new FrmIngresar());
         con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmIngresar());        
     }//GEN-LAST:event_lblIniciarSesionMouseClicked
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed

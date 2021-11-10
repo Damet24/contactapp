@@ -1,14 +1,8 @@
 package contactapp.Formularios;
 
-import contactapp.Conector;
-import contactapp.ContactApp;
-import contactapp.Usuario;
+import contactapp.*;
 import java.awt.BorderLayout;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.sql.*;
 import javax.swing.JPanel;
 
 public class FrmPrincipal extends javax.swing.JFrame {
