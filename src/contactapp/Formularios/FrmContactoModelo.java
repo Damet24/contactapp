@@ -19,6 +19,8 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         lblNumero = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(808, 100));
+
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditar.setText("Editar");
 
@@ -45,7 +47,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         lblNumero.setText("jLabel2");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Favorito");
+        jButton1.setText("Ver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,7 +60,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblNumero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
                 .addComponent(btnEliminar)
                 .addGap(10, 10, 10)
                 .addComponent(jButton1)

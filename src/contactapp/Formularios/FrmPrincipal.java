@@ -2,6 +2,7 @@ package contactapp.Formularios;
 
 import contactapp.*;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.sql.*;
 import javax.swing.JPanel;
 
@@ -87,6 +88,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
+        MainPane.setPreferredSize(new java.awt.Dimension(808, 484));
+
         javax.swing.GroupLayout MainPaneLayout = new javax.swing.GroupLayout(MainPane);
         MainPane.setLayout(MainPaneLayout);
         MainPaneLayout.setHorizontalGroup(
@@ -95,7 +98,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(MainPane);
@@ -149,7 +152,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,8 +188,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user=" + usuario.getId() + ";");
             int cont = 0;
             while(rs.next()){
-                System.out.println(rs.getString("id_contact"));
-                ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
+                Statement stmt2 = reg.createStatement();
+                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
+                if(rs2.next()){
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number")), 0, 100 * cont);
+                }
+                else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
+                rs2.close();
+                stmt2.close();
+                MainPane.setPreferredSize(new Dimension(700, 100 * cont));
                 cont++;
             }
         }catch(SQLException e){
@@ -195,7 +205,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     
     public void ShowPanel(JPanel p, int x, int y){
-        p.setSize(780, 100);
+        p.setSize(798, 100);
         p.setLocation(x, y);
         MainPane.add(p, BorderLayout.CENTER);
         MainPane.revalidate();
