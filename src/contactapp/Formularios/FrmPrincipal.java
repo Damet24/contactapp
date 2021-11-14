@@ -196,9 +196,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
-                MainPane.setPreferredSize(new Dimension(700, 100 * cont));
                 cont++;
             }
+            MainPane.setPreferredSize(new Dimension(700, 100 * cont));
         }catch(SQLException e){
             System.out.println(e);
         }
