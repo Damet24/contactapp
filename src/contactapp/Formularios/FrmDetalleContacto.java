@@ -11,9 +11,12 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     String Nombre, SegundoNombre, Apellido, SegundoApellido, TelefonoPersonal, CorreoPersonal, TagCorreo, TagTelefono, NombreCompleto;
+    String id;
     
-    public FrmDetalleContacto() {
+    public FrmDetalleContacto(String id) {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.id = id;
         pnlDivisor.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor3.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
@@ -21,6 +24,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         reg = con.getConector();
         lblTelefonoOpcional.setText("");
         lblTagTelefonoOpcional.setText("");
+        ObtenerDatos();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +34,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         pnlDivisor = new javax.swing.JPanel();
         lblTelefonoPersonal = new javax.swing.JLabel();
         lblTagTelefono = new javax.swing.JLabel();
@@ -45,6 +48,14 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalles del Contacto");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -64,9 +75,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditar.setText("Editar");
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
 
         lblTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTelefonoPersonal.setText("jLabel2");
@@ -166,10 +174,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlDivisor3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(202, 202, 202)
@@ -192,9 +197,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDivisor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -202,12 +205,19 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+//        ContactApp.CambiarFormulario(this, new FrmPrincipal(FrmPrincipal.usuario));
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(FrmPrincipal.usuario));
+    }//GEN-LAST:event_formWindowClosing
+
     public void ObtenerDatos(){
         try{
-            int idContact = 1;
-            String sql1 = "select * from contacts where id_contact = " + idContact + " limit 1;";
-            String sql2 = "select * from numbers where fk_contact = " + idContact + " limit 1;";
-            String sql3 = "select * from emails where fk_contact = " + idContact + " limit 1;";             
+            String sql1 = "select * from contacts where id_contact = " + id + " limit 1;";
+            String sql2 = "select * from numbers where fk_contact = " + id + " limit 1;";
+            String sql3 = "select * from emails where fk_contact = " + id + " limit 1;";             
             stmt = reg.createStatement();            
             ResultSet rs1 = stmt.executeQuery(sql1);
             // contactos
@@ -277,14 +287,13 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmDetalleContacto().setVisible(true);
+                new FrmDetalleContacto("").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCorreoPersonal;

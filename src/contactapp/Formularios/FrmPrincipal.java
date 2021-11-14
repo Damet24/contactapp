@@ -11,7 +11,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    Usuario usuario;
+    static Usuario usuario;
     int cont = 0;
     
     public FrmPrincipal(Usuario u) {
@@ -51,7 +51,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(243, 248, 255));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("jTextField1");
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");

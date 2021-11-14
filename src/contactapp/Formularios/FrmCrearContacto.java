@@ -14,6 +14,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     
     public FrmCrearContacto(Usuario u) {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         txtNombre.setText("");
         txtSegundoNombre.setText("");
         txtApellido.setText("");
@@ -47,6 +48,11 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Contacto");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -190,6 +196,10 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         con.Desconectar();
         ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));        
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(FrmPrincipal.usuario));
+    }//GEN-LAST:event_formWindowClosing
 
     private String ValidorCampos(){
         String error = "";
