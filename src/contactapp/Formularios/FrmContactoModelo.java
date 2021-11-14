@@ -1,11 +1,21 @@
 package contactapp.Formularios;
 
-public class FrmContactoModelo extends javax.swing.JPanel {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JFrame;
 
-    public FrmContactoModelo(String nombre, String numero) {
+public class FrmContactoModelo extends javax.swing.JPanel {
+    
+    String id;
+    FrmPrincipal root;
+
+    public FrmContactoModelo(String id, String nombre, String numero, FrmPrincipal root) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);
+        this.id = id;
+        this.root = root;
     }
 
     @SuppressWarnings("unchecked")
@@ -26,6 +36,11 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -89,6 +104,11 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        root.EliminarUsuario(id);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;

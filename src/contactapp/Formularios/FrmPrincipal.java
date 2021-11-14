@@ -12,6 +12,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     Usuario usuario;
+    int cont = 0;
     
     public FrmPrincipal(Usuario u) {
         initComponents();
@@ -186,22 +187,38 @@ public class FrmPrincipal extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user=" + usuario.getId() + ";");
-            int cont = 0;
+            cont = 0;
+            LimpearUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number")), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("id_contact"), rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"), this), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
+                else ShowPanel(new FrmContactoModelo(rs.getString("id_contact"), rs.getString("name") + " " + rs.getString("last_name"), "", this), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
                 cont++;
             }
+            ShowPanel(new JPanel(), 0, 100 * cont);
             MainPane.setPreferredSize(new Dimension(700, 100 * cont));
         }catch(SQLException e){
             System.out.println(e);
         }
+    }
+    
+    public void EliminarUsuario(String id){
+        try{
+            stmt = reg.createStatement();
+            stmt.execute("DELETE FROM `contacts` WHERE `contacts`.`id_contact` = " + id);
+            ListarUsuarios();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void LimpearUsuarios(){
+        MainPane.removeAll();
     }
     
     public void ShowPanel(JPanel p, int x, int y){

@@ -43,26 +43,18 @@
                           <Component id="txtSegundoNombre" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="txtApellido" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="txtSegundoApellido" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="txtTelefonoPersonal" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnAgregarCampoTelefono" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="txtCorreoPersonal" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnAgregarCampoCorreo" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtTelefonoPersonal" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="txtCorreoPersonal" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnGuardar" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="btnCancelar" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,13 +83,11 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="btnAgregarCampoTelefono" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefonoPersonal" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="btnAgregarCampoCorreo" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCorreoPersonal" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -229,16 +219,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAgregarCampoTelefono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="+"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAgregarCampoCorreo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="+"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
