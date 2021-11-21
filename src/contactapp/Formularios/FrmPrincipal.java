@@ -18,7 +18,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         con = new Conector();
         reg = con.getConector();
         usuario = u;
-        ListarUsuarios();
+        txtBuscar.setText("");
+        ListarUsuarios();        
     }
 
     @SuppressWarnings("unchecked")
@@ -26,11 +27,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnNuevoContacto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MainPane = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -49,11 +52,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(243, 248, 255));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("jTextField1");
+        txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtBuscar.setText("jTextField1");
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnNuevoContacto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNuevoContacto.setText("Nuevo Contacto");
@@ -70,7 +78,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -82,11 +90,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
+
+        jScrollPane1.setBorder(null);
 
         MainPane.setPreferredSize(new java.awt.Dimension(808, 484));
 
@@ -98,10 +108,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(MainPane);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Cantidad de contactos  — ");
+
+        lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCantidad.setText("jLabel2");
 
         jMenu1.setText("Archivo");
 
@@ -146,13 +162,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCantidad)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblCantidad))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -182,10 +208,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ContactApp.CambiarFormulario(this, new FrmCrearContacto(usuario));
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+//        try{
+//            stmt = reg.createStatement();
+//            ResultSet rs = stmt.executeQuery("");
+//        }catch(SQLException e){
+//            System.out.println(e);
+//        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user=" + usuario.getId() + ";");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user = " + usuario.getId() + ";");
             int cont = 0;
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
@@ -193,12 +228,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 if(rs2.next()){
                     ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number")), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs.getString("last_name")), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
                 cont++;
             }
             MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+            CantidadContactos();
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -210,6 +245,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MainPane.add(p, BorderLayout.CENTER);
         MainPane.revalidate();
         MainPane.repaint();
+    }
+    
+    public void CantidadContactos(){
+        try{
+            stmt = reg.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT count_contacts(" + usuario.getId() + ") as amount;");
+            while(rs.next()){
+                lblCantidad.setText(rs.getString("amount"));
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
     }
     
     public static void main(String args[]) {
@@ -248,6 +295,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel MainPane;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoContacto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -257,6 +305,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
