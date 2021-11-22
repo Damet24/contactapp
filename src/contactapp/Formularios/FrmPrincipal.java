@@ -209,12 +209,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        try{
-//            stmt = reg.createStatement();
-//            ResultSet rs = stmt.executeQuery("");
-//        }catch(SQLException e){
-//            System.out.println(e);
-//        }
+        try{
+            stmt = reg.createStatement();
+            ResultSet rs = stmt.executeQuery("CALL search_contact ('" + txtBuscar.getText() + "', " + usuario.getId() + ");");
+            while(rs.next()){
+                System.out.println(rs.getString("name") + " " + rs.getString("last_name") + " " + rs.getString("fk_user"));                
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     public void ListarUsuarios(){
@@ -224,9 +227,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             int cont = 0;
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
+                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number")), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"), rs.getInt("id_contact"), rs2.getInt("id_number"), usuario), 0, 100 * cont);
                 }
                 rs2.close();
                 stmt2.close();

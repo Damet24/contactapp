@@ -4,13 +4,20 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import contactapp.*;
 
 public class FrmContactoModelo extends javax.swing.JPanel {
     
-    public FrmContactoModelo(String nombre, String numero) {
+    int id_contact, id_number;
+    Usuario usuario;
+    
+    public FrmContactoModelo(String nombre, String numero, int id_contact, int id_number, Usuario u) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);
+        this.id_contact = id_contact;
+        this.id_number = id_number;
+        usuario = u;
     }
 
     @SuppressWarnings("unchecked")
@@ -18,19 +25,24 @@ public class FrmContactoModelo extends javax.swing.JPanel {
     private void initComponents() {
 
         btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnDetalles = new javax.swing.JButton();
         pnlFotoUsuario = new Fondo();
         lblNombre = new javax.swing.JLabel();
         lblNumero = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(808, 100));
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEliminar.setText("Detalles");
+        btnDetalles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDetalles.setText("Detalles");
 
         javax.swing.GroupLayout pnlFotoUsuarioLayout = new javax.swing.GroupLayout(pnlFotoUsuario);
         pnlFotoUsuario.setLayout(pnlFotoUsuarioLayout);
@@ -49,8 +61,8 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         lblNumero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNumero.setText("jLabel2");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Eliminar");
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,9 +76,9 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                     .addComponent(lblNombre)
                     .addComponent(lblNumero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
-                .addComponent(btnEliminar)
+                .addComponent(btnDetalles)
                 .addGap(10, 10, 10)
-                .addComponent(jButton1)
+                .addComponent(btnEliminar)
                 .addGap(10, 10, 10)
                 .addComponent(btnEditar)
                 .addContainerGap())
@@ -86,16 +98,23 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(btnEliminar)
                             .addComponent(btnEditar)
-                            .addComponent(btnEliminar))))
+                            .addComponent(btnDetalles))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try{           
+            ContactApp.CambiarFormulario(null, new FrmEditarContacto(usuario, id_contact, id_number));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
     
     class Fondo extends JPanel {
-        private Image Imagen;
-        
+        private Image Imagen;        
         @Override
         public void paint(Graphics g){
             Imagen = new ImageIcon(getClass().getResource("/Imagenes/user.png")).getImage();
@@ -106,9 +125,9 @@ public class FrmContactoModelo extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JPanel pnlFotoUsuario;
