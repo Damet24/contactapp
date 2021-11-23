@@ -10,8 +10,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    String id_contact, id_number;
-    String Nombre;
+    String id_contact, id_number, Nombre;
     Usuario usuario;
     
     public FrmDetalleContacto(Usuario u, String id_contact, String id_number) {
