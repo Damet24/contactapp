@@ -123,19 +123,24 @@ public class FrmIngresar extends javax.swing.JFrame {
         try {
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users where email='" + txtCorreo.getText() + "'");
-            while(rs.next()){
-                correo = rs.getString("email");
-                clave = rs.getString("password");
-                id = rs.getString("id_user");
-                nombre = rs.getString("name");
-                usuario = new Usuario(id, nombre, correo);
-            }            
-            if(txtClave.getText().equals(clave)){
-                con.Desconectar();
-                ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+            if(rs.next()){
+                while(rs.next()){
+                    correo = rs.getString("email");
+                    clave = rs.getString("password");
+                    id = rs.getString("id_user");
+                    nombre = rs.getString("name");
+                    usuario = new Usuario(id, nombre, correo);
+                }            
+                if(txtClave.getText().equals(clave)){
+                    con.Desconectar();
+                    ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+                }else {
+                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
+                }
             }else {
-                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El usuario no existe!", "Error", JOptionPane.WARNING_MESSAGE);
             }
+            
         }catch(SQLException e){
             System.out.println(e);
         }
