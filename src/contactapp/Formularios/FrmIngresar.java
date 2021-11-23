@@ -122,7 +122,7 @@ public class FrmIngresar extends javax.swing.JFrame {
         Usuario usuario = null;
         try {
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM users where email='" + txtCorreo.getText() + "'");
+            ResultSet rs = stmt.executeQuery("call select_user('" + txtCorreo.getText() + "');");
         
             while(rs.next()){
                 correo = rs.getString("email");

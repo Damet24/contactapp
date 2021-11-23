@@ -50,6 +50,11 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Contacto");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Dirección:");
@@ -220,6 +225,11 @@ public class FrmEditarContacto extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+    }//GEN-LAST:event_formWindowClosing
 
     public void ConsultarDatos(){
         try{

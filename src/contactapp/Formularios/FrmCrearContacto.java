@@ -2,6 +2,7 @@ package contactapp.Formularios;
 
 import contactapp.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.regex.*;
 import javax.swing.JOptionPane; 
 
@@ -11,6 +12,9 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     Usuario usuario;
+    
+    ManageInfo numbers;
+    ManageInfo address;
     
     public FrmCrearContacto(Usuario u) {
         initComponents();
@@ -24,6 +28,9 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         con = new Conector();
         reg = con.getConector();
         usuario = u;
+        
+        numbers = new ManageInfo();
+        address = new ManageInfo();
     }   
     
     @SuppressWarnings("unchecked")
@@ -215,6 +222,18 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnAgregarCampoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCampoTelefonoActionPerformed
+        ShowCreateInfo(new FrmCreateInfo("Numero", "Etiqueta", numbers));
+    }//GEN-LAST:event_btnAgregarCampoTelefonoActionPerformed
+
+    private void btnAgregarCampoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCampoCorreoActionPerformed
+        ShowCreateInfo(new FrmCreateInfo("Direccion", "Etiqueta", address));
+    }//GEN-LAST:event_btnAgregarCampoCorreoActionPerformed
+
+    private void ShowCreateInfo(FrmCreateInfo frame){
+        frame.setLocationRelativeTo(this);
+        frame.setVisible(true);
+    }
     private String ValidorCampos(){
         String error = "";
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
