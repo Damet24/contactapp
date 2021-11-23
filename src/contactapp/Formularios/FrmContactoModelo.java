@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import contactapp.*;
 
+// :(
 public class FrmContactoModelo extends javax.swing.JPanel {
     
     String id_contact, id_number;
