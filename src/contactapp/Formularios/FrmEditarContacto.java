@@ -82,7 +82,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         jLabel2.setText("Segundo nombre:");
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Actualizar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
