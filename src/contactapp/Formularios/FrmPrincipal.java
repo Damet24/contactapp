@@ -233,6 +233,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 if(rs2.next()){
                     ShowPanel(new FrmContactoModelo(rs.getString("name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 }
+                else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
                 cont++;
