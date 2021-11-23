@@ -144,9 +144,8 @@ public class FrmRegistrarse extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery("SELECT * FROM users where email= '" + txtCorreo.getText() + "'");
             if("".equals(ValidorCampos())){
                 if(!rs.next()){
-                    stmt.executeUpdate("INSERT INTO `users` (`name`, `last_name`, `email`, `password`) VALUES ('"
-                    + txtNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtCorreo.getText() + "', '" + txtContraseña.getText() + "') ");
-                    JOptionPane.showMessageDialog(this, "Usuario registrado con exito!");
+                    stmt.executeUpdate("CALL insert_users ('" + txtNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtCorreo.getText() + "', '" + txtContraseña.getText() + "');");
+                    JOptionPane.showMessageDialog(this, "Usuario registrado con éxito");
                     ContactApp.CambiarFormulario(this, new FrmIngresar());
                     con.Desconectar();
                 }

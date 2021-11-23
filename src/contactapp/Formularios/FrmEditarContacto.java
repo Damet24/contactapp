@@ -38,7 +38,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtCorreoPersonal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -81,11 +81,11 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Segundo nombre:");
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setText("Actualizar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -143,7 +143,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
@@ -183,7 +183,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
@@ -194,10 +194,10 @@ public class FrmEditarContacto extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         con.Desconectar();
-        this.dispose();
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try{
             stmt = reg.createStatement();
             if("".equals(ValidorCampos())){
@@ -219,7 +219,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     public void ConsultarDatos(){
         try{
@@ -295,10 +295,10 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     } 
          
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregarCampoCorreo;
     private javax.swing.JButton btnAgregarCampoTelefono;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

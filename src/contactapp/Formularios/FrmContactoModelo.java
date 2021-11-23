@@ -132,7 +132,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
     private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
         try{           
-            ContactApp.CambiarFormulario(root, new FrmEditarContacto(usuario, id_contact, id_number));
+            ContactApp.CambiarFormulario(root, new FrmDetalleContacto(usuario, id_contact, id_number));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
