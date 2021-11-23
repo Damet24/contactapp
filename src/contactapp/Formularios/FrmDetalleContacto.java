@@ -256,54 +256,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         }
     }
     
-//    public void ObtenerDatos(){
-//        try{
-//            int idContact = 1;
-//            String sql1 = "select * from contacts where id_contact = " + idContact + " limit 1;";
-//            String sql2 = "select * from numbers where fk_contact = " + idContact + " limit 1;";
-//            String sql3 = "select * from emails where fk_contact = " + idContact + " limit 1;";             
-//            stmt = reg.createStatement();            
-//            ResultSet rs1 = stmt.executeQuery(sql1);
-//            // contactos
-//            while(rs1.next()){
-//                Nombre = rs1.getString("name");
-//                SegundoNombre = rs1.getString("second_name");
-//                Apellido = rs1.getString("last_name");
-//                SegundoApellido = rs1.getString("second_last_name");                
-//            }
-//            stmt = reg.createStatement();            
-//            ResultSet rs2 = stmt.executeQuery(sql2);
-//            // numeros
-//            while(rs2.next()){
-//                TelefonoPersonal = rs2.getString("number");
-//                TagTelefono = rs2.getString("tag");                   
-//            }
-//            stmt = reg.createStatement();            
-//            ResultSet rs3 = stmt.executeQuery(sql3);                       
-//            // correos
-//            while(rs3.next()){
-//                CorreoPersonal = rs3.getString("email");
-//                TagCorreo = rs3.getString("tag");                
-//            }
-//            MostrarDatos();
-//        }catch(SQLException e){
-//            System.out.println(e);
-//        }
-//    }
-        
-//    public void MostrarDatos(){
-//        try{
-//            NombreCompleto = Nombre + " " + Apellido;
-//            lblNombre.setText(NombreCompleto);
-//            lblTelefonoPersonal.setText(TelefonoPersonal);
-//            lblTagTelefono.setText(TagTelefono);
-//            lblCorreoPersonal.setText(CorreoPersonal);
-//            lblTagCorreo.setText(TagCorreo);
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

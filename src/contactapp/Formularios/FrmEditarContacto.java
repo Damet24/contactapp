@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
 
 public class FrmEditarContacto extends javax.swing.JFrame {
 
-    int id_contact, id_number;
+    String id_contact, id_number;
     Conector con;
     Statement stmt;
     Connection reg;
     Usuario usuario;
     
-    public FrmEditarContacto(Usuario u, int id_contact, int id_number) {
+    public FrmEditarContacto(Usuario u, String id_contact, String id_number) {
         initComponents();
         this.id_contact = id_contact;
         this.id_number = id_number;

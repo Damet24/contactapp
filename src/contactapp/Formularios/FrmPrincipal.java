@@ -12,6 +12,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     Usuario usuario;
+    int cont = 0;
     
     public FrmPrincipal(Usuario u) {
         initComponents();
@@ -223,20 +224,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user = " + usuario.getId() + ";");
-            int cont = 0;
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user=" + usuario.getId() + ";");
+            cont = 0;
+            LimpearUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
+                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"), rs.getInt("id_contact"), rs2.getInt("id_number"), usuario), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 }
                 rs2.close();
                 stmt2.close();
                 cont++;
             }
+            ShowPanel(new JPanel(), 0, 100 * cont);
             MainPane.setPreferredSize(new Dimension(700, 100 * cont));
-            CantidadContactos();
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -260,6 +262,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.println(e);
         }
+    }
+    
+    public void EliminarUsuario(String id){
+        try{
+            stmt = reg.createStatement();
+            stmt.execute("DELETE FROM `contacts` WHERE `contacts`.`id_contact` = " + id);
+            ListarUsuarios();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void LimpearUsuarios(){
+        MainPane.removeAll();
     }
     
     public static void main(String args[]) {

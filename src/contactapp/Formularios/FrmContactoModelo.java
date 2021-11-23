@@ -8,16 +8,18 @@ import contactapp.*;
 
 public class FrmContactoModelo extends javax.swing.JPanel {
     
-    int id_contact, id_number;
+    String id_contact, id_number;
     Usuario usuario;
+    FrmPrincipal root;
     
-    public FrmContactoModelo(String nombre, String numero, int id_contact, int id_number, Usuario u) {
+    public FrmContactoModelo(String nombre, String numero, String id_contact, String id_number, Usuario u, FrmPrincipal root) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);
         this.id_contact = id_contact;
         this.id_number = id_number;
         usuario = u;
+        this.root = root;
     }
 
     @SuppressWarnings("unchecked")
@@ -63,6 +65,11 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,6 +119,11 @@ public class FrmContactoModelo extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        root.EliminarUsuario(id_contact + "");
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     class Fondo extends JPanel {
         private Image Imagen;        
