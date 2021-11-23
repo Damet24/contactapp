@@ -224,7 +224,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where fk_user=" + usuario.getId() + ";");
+            ResultSet rs = stmt.executeQuery("CALL select_contacts(" + usuario.getId() + ");");
             cont = 0;
             LimpearUsuarios();
             while(rs.next()){
