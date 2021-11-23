@@ -33,7 +33,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         pnlFotoUsuario = new Fondo();
         lblNombre = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         pnlDivisor = new javax.swing.JPanel();
         lblTelefonoPersonal = new javax.swing.JLabel();
         lblTagTelefono = new javax.swing.JLabel();
@@ -73,14 +72,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -185,13 +176,11 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(pnlFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))
+                                .addGap(210, 210, 210))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)))
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(202, 202, 202)
@@ -217,7 +206,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
@@ -229,10 +217,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         ContactApp.CambiarFormulario(this, new FrmEditarContacto(usuario, id_contact, id_number));
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         con.Desconectar();
@@ -314,7 +298,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblCorreoPersonal;
     private javax.swing.JLabel lblDireccion;
