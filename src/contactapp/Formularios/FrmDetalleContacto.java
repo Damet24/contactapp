@@ -20,11 +20,10 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         pnlDivisor3.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         con = new Conector();
         reg = con.getConector();
-        lblTelefonoOpcional.setText("");
-        lblTagTelefonoOpcional.setText("");
         usuario = u;
         this.id_contact = id_contact;
         this.id_number = id_number;
+        ObtenerDatos();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,8 +37,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         pnlDivisor = new javax.swing.JPanel();
         lblTelefonoPersonal = new javax.swing.JLabel();
         lblTagTelefono = new javax.swing.JLabel();
-        lblTelefonoOpcional = new javax.swing.JLabel();
-        lblTagTelefonoOpcional = new javax.swing.JLabel();
         pnlDivisor2 = new javax.swing.JPanel();
         lblCorreoPersonal = new javax.swing.JLabel();
         lblTagCorreo = new javax.swing.JLabel();
@@ -82,12 +79,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         lblTagTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTagTelefono.setText("jLabel3");
 
-        lblTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTelefonoOpcional.setText("jLabel6");
-
-        lblTagTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTagTelefonoOpcional.setText("jLabel7");
-
         javax.swing.GroupLayout pnlDivisorLayout = new javax.swing.GroupLayout(pnlDivisor);
         pnlDivisor.setLayout(pnlDivisorLayout);
         pnlDivisorLayout.setHorizontalGroup(
@@ -95,9 +86,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             .addGroup(pnlDivisorLayout.createSequentialGroup()
                 .addGroup(pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTelefonoPersonal)
-                    .addComponent(lblTagTelefono)
-                    .addComponent(lblTelefonoOpcional)
-                    .addComponent(lblTagTelefonoOpcional))
+                    .addComponent(lblTagTelefono))
                 .addGap(0, 0, 0))
         );
         pnlDivisorLayout.setVerticalGroup(
@@ -107,10 +96,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addComponent(lblTelefonoPersonal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTagTelefono)
-                .addGap(10, 10, 10)
-                .addComponent(lblTelefonoOpcional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTagTelefonoOpcional)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,13 +183,13 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre)
                     .addComponent(pnlFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(pnlDivisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(pnlDivisor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDivisor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,8 +281,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     private javax.swing.JLabel lblTagCorreo;
     private javax.swing.JLabel lblTagDireccion;
     private javax.swing.JLabel lblTagTelefono;
-    private javax.swing.JLabel lblTagTelefonoOpcional;
-    private javax.swing.JLabel lblTelefonoOpcional;
     private javax.swing.JLabel lblTelefonoPersonal;
     private javax.swing.JPanel pnlDivisor;
     private javax.swing.JPanel pnlDivisor2;

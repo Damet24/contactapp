@@ -46,6 +46,11 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
         btnDetalles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDetalles.setText("Detalles");
+        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetallesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFotoUsuarioLayout = new javax.swing.GroupLayout(pnlFotoUsuario);
         pnlFotoUsuario.setLayout(pnlFotoUsuarioLayout);
@@ -122,9 +127,16 @@ public class FrmContactoModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
         root.EliminarUsuario(id_contact + "");
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
+        try{           
+            ContactApp.CambiarFormulario(null, new FrmEditarContacto(usuario, id_contact, id_number));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnDetallesActionPerformed
     
     class Fondo extends JPanel {
         private Image Imagen;        

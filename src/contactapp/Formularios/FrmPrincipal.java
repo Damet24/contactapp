@@ -239,6 +239,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
             ShowPanel(new JPanel(), 0, 100 * cont);
             MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+            CantidadContactos();
         }catch(SQLException e){
             System.out.println(e);
         }
