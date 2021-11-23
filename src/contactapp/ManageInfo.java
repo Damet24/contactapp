@@ -23,7 +23,15 @@ public class ManageInfo {
         System.out.println(List);
     }
     
+    public void Del(int index){
+        List.remove(index);
+    }
+    
     public ArrayList<Item> getList(){
         return List;
+    }
+    
+    public int getSize(){
+        return List.size();
     }
 }
