@@ -12,6 +12,8 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     Usuario usuario;
+    String numero_opcional = null, tag_numero_opcional = null;
+    int id_numero_opcional = 0, id_correo = 0, id_direccion = 0;
     
     public FrmEditarContacto(Usuario u, String id_contact, String id_number) {
         initComponents();
@@ -208,20 +210,21 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement();
             if("".equals(ValidorCampos())){
-                ResultSet rs = stmt.executeQuery("CALL select_numbers_emails_address (" + id_contact + ");");
-                while(rs.next()){
-                    try{
-                        int id_optional_number = 0;
-                        if("Laboral".equals(rs.getString("tag_numbers"))){
-                            id_optional_number = rs.getInt("id_number");
-                        }
-                        Statement stmt2 = reg.createStatement();
-                        stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_optional_number + ", 'Laboral', '" + txtTelefonoOpcional.getText() + "', " + rs.getInt("id_email") + ", 'Personal', '" + txtCorreo.getText() + "', " + rs.getInt("id_address") + ", 'Personal', '" + txtDireccion.getText() + "');");               
-                        stmt2.close();
-                    }catch(SQLException e){
-                        System.out.println(e);
+                if(numero_opcional != null){
+                    ResultSet rs = stmt.executeQuery("CALL select_id_optional_number (" + numero_opcional + ");");
+                    while(rs.next()){
+                        id_numero_opcional = rs.getInt("id_number");
+                        tag_numero_opcional = "Laboral";
                     }
+                    rs.close();
+                    stmt.close();
                 }
+                Statement stmt2 = reg.createStatement();
+                stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_numero_opcional + ", '" + tag_numero_opcional + "', '" + txtTelefonoOpcional.getText() + "', " + id_correo + ", 'Personal', '" + txtCorreo.getText() + "', " + id_direccion + ", 'Personal', '" + txtDireccion.getText() + "');");
+                stmt2.close();
+                id_numero_opcional = 0;
+                tag_numero_opcional = null;
+                id_numero_opcional = 0;
                 JOptionPane.showMessageDialog(this, "Contacto actualizado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
                 ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
             }else{
@@ -251,12 +254,15 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     txtSegundoApellido.setText(rs.getString("second_last_name"));                                        
                     if("Laboral".equals(rs2.getString("tag_numbers"))){
                         txtTelefonoOpcional.setText(rs2.getString("number"));
+                        numero_opcional = rs2.getString("number");                        
                     }else{
                         txtTelefonoOpcional.setText("");
                         txtTelefonoPersonal.setText(rs2.getString("number"));
                     }
                     txtCorreo.setText(rs2.getString("email"));
                     txtDireccion.setText(rs2.getString("address"));
+                    id_correo = rs2.getInt("id_email");
+                    id_direccion = rs2.getInt("id_address");
                 }
                 rs2.close();
                 stmt2.close();
