@@ -219,12 +219,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    public void ListarUsuarios(){
+     public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("CALL select_contacts(" + usuario.getId() + ");");
             cont = 0;
-            LimpiarUsuarios();
+            LimpearUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
@@ -274,7 +274,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
-    public void LimpiarUsuarios(){
+    public void LimpearUsuarios(){
         MainPane.removeAll();
     }
     

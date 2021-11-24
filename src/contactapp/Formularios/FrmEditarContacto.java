@@ -2,8 +2,7 @@ package contactapp.Formularios;
 
 import contactapp.*;
 import java.sql.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 
 public class FrmEditarContacto extends javax.swing.JFrame {
@@ -241,20 +240,20 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     public void ConsultarDatos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL select_contacts (" + id_contact + ");");
+            ResultSet rs = stmt.executeQuery("select * from contacts where id_contact = " + id_contact + ";");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
-                if(rs2.next()){
+                while(rs2.next()){
                     txtNombre.setText(rs.getString("name"));
                     txtSegundoNombre.setText(rs.getString("second_name"));
                     txtApellido.setText(rs.getString("last_name"));
-                    txtSegundoApellido.setText(rs.getString("second_last_name"));
-                    txtTelefonoPersonal.setText(rs2.getString("number"));
+                    txtSegundoApellido.setText(rs.getString("second_last_name"));                                        
                     if("Laboral".equals(rs2.getString("tag_numbers"))){
                         txtTelefonoOpcional.setText(rs2.getString("number"));
                     }else{
                         txtTelefonoOpcional.setText("");
+                        txtTelefonoPersonal.setText(rs2.getString("number"));
                     }
                     txtCorreo.setText(rs2.getString("email"));
                     txtDireccion.setText(rs2.getString("address"));
@@ -271,16 +270,21 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         String error = "";
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
+        Pattern pattern2 = Pattern.compile("[0-9]+");
+
+        Matcher match = pattern2.matcher(txtTelefonoPersonal.getText());
         Matcher matcher = pattern.matcher(txtCorreo.getText());
+
         if("".equals(txtNombre.getText())) error = error + "El nombre es un campo requerido.\n";
         if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono es un campo requerido.\n";
+        if(txtTelefonoPersonal.getText().length() != 10 || !match.matches()) error = error + "\nIgrese un numero valido.";
         if("".equals(txtCorreo.getText())){
             /* ### */
         }else{
             if(!matcher.matches()){
                 error = error + "El correo es inválido.\n";
             }
-        }      
+        }
         return error;
     }
     

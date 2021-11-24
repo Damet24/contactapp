@@ -244,16 +244,21 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         String error = "";
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
+        Pattern pattern2 = Pattern.compile("[0-9]+");
+
+        Matcher match = pattern2.matcher(txtTelefonoPersonal.getText());
         Matcher matcher = pattern.matcher(txtCorreo.getText());
+
         if("".equals(txtNombre.getText())) error = error + "El nombre es un campo requerido.\n";
-        if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono personal es un campo requerido.\n";
+        if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono es un campo requerido.\n";
+        if(txtTelefonoPersonal.getText().length() != 10 || !match.matches()) error = error + "\nIgrese un numero valido.";
         if("".equals(txtCorreo.getText())){
             /* ### */
         }else{
             if(!matcher.matches()){
                 error = error + "El correo es inválido.\n";
             }
-        }      
+        }
         return error;
     }
     
