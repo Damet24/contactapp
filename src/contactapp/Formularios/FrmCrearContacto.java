@@ -169,7 +169,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Agregar direccion");
+        jButton2.setText("Agregar correo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -287,19 +287,19 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAgregarCampoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCampoTelefonoActionPerformed
-        ShowCreateInfo(new FrmCreateInfo("Numero", "Etiqueta", numbers));
+        ShowCreateInfo(new FrmCreateInfo("Numero", "Etiqueta", numbers, "[0-9]+"));
     }//GEN-LAST:event_btnAgregarCampoTelefonoActionPerformed
 
     private void btnAgregarCampoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCampoCorreoActionPerformed
-        ShowCreateInfo(new FrmCreateInfo("Correo", "Etiqueta", emails));
+        ShowCreateInfo(new FrmCreateInfo("Correo", "Etiqueta", emails, "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"));
     }//GEN-LAST:event_btnAgregarCampoCorreoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ShowCreateInfo(new FrmCreateInfo("Numero", "Etiqueta", numbers));
+       ShowCreateInfo(new FrmCreateInfo("Numero", "Etiqueta", numbers, "[0-9]+"));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ShowCreateInfo(new FrmCreateInfo("Correo", "Etiqueta", emails));
+        ShowCreateInfo(new FrmCreateInfo("Correo", "Etiqueta", emails, "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ShowCreateInfo(FrmCreateInfo frame){

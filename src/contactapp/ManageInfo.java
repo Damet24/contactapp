@@ -7,10 +7,6 @@ package contactapp;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author danie
- */
 public class ManageInfo {
     private ArrayList<Item> List;
     
@@ -19,7 +15,7 @@ public class ManageInfo {
     }
     
     public void Add(String value, String tag){
-        System.out.println(List);
+        List.add(new Item(value, tag));
     }
     
     public void Del(int index){

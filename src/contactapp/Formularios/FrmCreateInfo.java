@@ -7,6 +7,9 @@ package contactapp.Formularios;
 
 import contactapp.ManageInfo;
 import contactapp.ManejarInfo;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -17,13 +20,15 @@ public class FrmCreateInfo extends javax.swing.JFrame {
 
     ManageInfo info;
     JPanel panel;
+    String regex;
     
-    public FrmCreateInfo(String nValue, String nTag, ManageInfo info) {
+    public FrmCreateInfo(String nValue, String nTag, ManageInfo info, String r) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         lbValue.setText(nValue);
         lbTag.setText(nTag);
         this.info = info;
+        regex = r;
     }
 
     /**
@@ -92,11 +97,21 @@ public class FrmCreateInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        info.Add(txtValue.getText(), txtTag.getText());
-        ManejarInfo.ListarInfo();
-        dispose();
+        if(validar(txtValue.getText())){
+            info.Add(txtValue.getText(), txtTag.getText());
+            ManejarInfo.ListarInfo();
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "El " + lbValue.getText() + " es invalido.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private Boolean validar(String value){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(value);
+        return matcher.matches();
+    }
     /**
      * @param args the command line arguments
      */
@@ -127,7 +142,7 @@ public class FrmCreateInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCreateInfo("", "", null).setVisible(true);
+                new FrmCreateInfo("", "", null, "").setVisible(true);
             }
         });
     }
