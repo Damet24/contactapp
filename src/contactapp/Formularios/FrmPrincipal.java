@@ -229,9 +229,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoModelo(rs.getString("name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
                 cont++;
