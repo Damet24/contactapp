@@ -6,6 +6,8 @@
 package contactapp.Formularios;
 
 import contactapp.ManageInfo;
+import contactapp.ManejarInfo;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,6 +16,7 @@ import contactapp.ManageInfo;
 public class FrmCreateInfo extends javax.swing.JFrame {
 
     ManageInfo info;
+    JPanel panel;
     
     public FrmCreateInfo(String nValue, String nTag, ManageInfo info) {
         initComponents();
@@ -90,6 +93,7 @@ public class FrmCreateInfo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         info.Add(txtValue.getText(), txtTag.getText());
+        ManejarInfo.ListarInfo();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -19,11 +19,18 @@ public class ManageInfo {
     }
     
     public void Add(String value, String tag){
-        List.add(new Item(value, tag));
         System.out.println(List);
+    }
+    
+    public void Del(int index){
+        List.remove(index);
     }
     
     public ArrayList<Item> getList(){
         return List;
+    }
+    
+    public int getSize(){
+        return List.size();
     }
 }
