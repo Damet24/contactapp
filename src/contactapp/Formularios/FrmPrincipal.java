@@ -1,8 +1,7 @@
 package contactapp.Formularios;
 
 import contactapp.*;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.sql.*;
 import javax.swing.JPanel;
 
@@ -118,7 +117,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Cantidad de contactos  — ");
 
         lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCantidad.setText("jLabel2");
 
         jMenu1.setText("Archivo");
 
@@ -226,7 +224,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("CALL select_contacts(" + usuario.getId() + ");");
             cont = 0;
-            LimpearUsuarios();
+            LimpiarUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
@@ -276,7 +274,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
-    public void LimpearUsuarios(){
+    public void LimpiarUsuarios(){
         MainPane.removeAll();
     }
     

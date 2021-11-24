@@ -35,9 +35,11 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         pnlDivisor = new javax.swing.JPanel();
         lblTelefonoPersonal = new javax.swing.JLabel();
-        lblTagTelefono = new javax.swing.JLabel();
+        lblTagTelefonoPersonal = new javax.swing.JLabel();
+        lblTelefonoOpcional = new javax.swing.JLabel();
+        lblTagTelefonoOpcional = new javax.swing.JLabel();
         pnlDivisor2 = new javax.swing.JPanel();
-        lblCorreoPersonal = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
         lblTagCorreo = new javax.swing.JLabel();
         pnlDivisor3 = new javax.swing.JPanel();
         lblDireccion = new javax.swing.JLabel();
@@ -78,18 +80,24 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         lblTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTelefonoPersonal.setText("jLabel2");
 
-        lblTagTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTagTelefono.setText("jLabel3");
+        lblTagTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTagTelefonoPersonal.setText("jLabel3");
+
+        lblTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTelefonoOpcional.setText("jLabel2");
+
+        lblTagTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTagTelefonoOpcional.setText("jLabel3");
 
         javax.swing.GroupLayout pnlDivisorLayout = new javax.swing.GroupLayout(pnlDivisor);
         pnlDivisor.setLayout(pnlDivisorLayout);
         pnlDivisorLayout.setHorizontalGroup(
             pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDivisorLayout.createSequentialGroup()
-                .addGroup(pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTelefonoPersonal)
-                    .addComponent(lblTagTelefono))
-                .addGap(0, 0, 0))
+            .addGroup(pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblTelefonoPersonal)
+                .addComponent(lblTagTelefonoPersonal))
+            .addComponent(lblTelefonoOpcional)
+            .addComponent(lblTagTelefonoOpcional)
         );
         pnlDivisorLayout.setVerticalGroup(
             pnlDivisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,12 +105,16 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTelefonoPersonal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTagTelefono)
+                .addComponent(lblTagTelefonoPersonal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTelefonoOpcional)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTagTelefonoOpcional)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblCorreoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCorreoPersonal.setText("jLabel4");
+        lblCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCorreo.setText("jLabel4");
 
         lblTagCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTagCorreo.setText("jLabel5");
@@ -113,7 +125,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisor2Layout.createSequentialGroup()
                 .addGroup(pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCorreoPersonal)
+                    .addComponent(lblCorreo)
                     .addComponent(lblTagCorreo))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -121,7 +133,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             pnlDivisor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDivisor2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCorreoPersonal)
+                .addComponent(lblCorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTagCorreo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -168,7 +180,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addComponent(lblNombre)
-                .addGap(274, 274, 274))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -215,17 +227,29 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        ContactApp.CambiarFormulario(this, new FrmEditarContacto(usuario, id_contact, id_number));
+        try{
+            ContactApp.CambiarFormulario(this, new FrmEditarContacto(usuario, id_contact, id_number));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        try{
+            con.Desconectar();        
+            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        try{
+            con.Desconectar();        
+            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnVolverActionPerformed
 
     class Fondo extends JPanel {
@@ -242,7 +266,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     public void ObtenerDatos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
+            ResultSet rs = stmt.executeQuery("CALL select_contacts (" + id_contact + ");");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
@@ -250,8 +274,10 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                     Nombre = rs.getString("name") + " " + rs.getString("last_name");
                     lblNombre.setText(Nombre);
                     lblTelefonoPersonal.setText(rs2.getString("number"));
-                    lblTagTelefono.setText(rs2.getString("tag_numbers"));
-                    lblCorreoPersonal.setText(rs2.getString("email"));
+                    lblTagTelefonoPersonal.setText(rs2.getString("tag_numbers"));
+                    lblTagTelefonoOpcional.setText("");
+                    lblTagTelefonoOpcional.setText("");
+                    lblCorreo.setText(rs2.getString("email"));
                     lblTagCorreo.setText(rs2.getString("tag_emails"));
                     lblDireccion.setText(rs2.getString("address"));
                     lblTagDireccion.setText(rs2.getString("tag_address"));
@@ -299,12 +325,14 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel lblCorreoPersonal;
+    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTagCorreo;
     private javax.swing.JLabel lblTagDireccion;
-    private javax.swing.JLabel lblTagTelefono;
+    private javax.swing.JLabel lblTagTelefonoOpcional;
+    private javax.swing.JLabel lblTagTelefonoPersonal;
+    private javax.swing.JLabel lblTelefonoOpcional;
     private javax.swing.JLabel lblTelefonoPersonal;
     private javax.swing.JPanel pnlDivisor;
     private javax.swing.JPanel pnlDivisor2;

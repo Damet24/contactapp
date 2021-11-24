@@ -31,7 +31,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="202" pref="202" max="-2" attributes="0"/>
               <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="274" pref="274" max="-2" attributes="0"/>
+              <EmptySpace min="274" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
@@ -51,7 +51,7 @@
                       <Component id="btnEditar" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="202" pref="202" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="pnlDivisor2" alignment="1" max="32767" attributes="0"/>
                           <Component id="pnlDivisor" max="32767" attributes="0"/>
@@ -130,13 +130,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblTelefonoPersonal" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTagTelefono" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              </Group>
+              <Component id="lblTelefonoPersonal" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTagTelefonoPersonal" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTelefonoOpcional" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTagTelefonoOpcional" alignment="0" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -145,7 +142,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTelefonoPersonal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblTagTelefono" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTagTelefonoPersonal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lblTelefonoOpcional" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblTagTelefonoOpcional" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -160,7 +161,23 @@
             <Property name="text" type="java.lang.String" value="jLabel2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTagTelefono">
+        <Component class="javax.swing.JLabel" name="lblTagTelefonoPersonal">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTelefonoOpcional">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTagTelefonoOpcional">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -177,7 +194,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblCorreoPersonal" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTagCorreo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -188,7 +205,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblCorreoPersonal" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTagCorreo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -197,7 +214,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblCorreoPersonal">
+        <Component class="javax.swing.JLabel" name="lblCorreo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>

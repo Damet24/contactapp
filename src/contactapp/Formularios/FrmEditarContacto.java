@@ -36,16 +36,16 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         txtSegundoApellido = new javax.swing.JTextField();
         txtTelefonoPersonal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtCorreoPersonal = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnAgregarCampoTelefono = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnAgregarCampoCorreo = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtTelefonoOpcional = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Contacto");
@@ -80,8 +80,8 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
 
-        txtCorreoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtCorreoPersonal.setText("jTextField6");
+        txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCorreo.setText("jTextField6");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Segundo nombre:");
@@ -106,52 +106,53 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Correo (Personal):");
-
-        btnAgregarCampoTelefono.setText("+");
+        jLabel4.setText("Correo:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Teléfono (Personal):");
 
-        btnAgregarCampoCorreo.setText("+");
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Segundo apellido:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Teléfono (Opcional):");
+
+        txtTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTelefonoOpcional.setText("jTextField4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefonoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCorreoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarCampoTelefono)
-                    .addComponent(btnAgregarCampoCorreo))
-                .addGap(50, 50, 50))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefonoOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefonoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,13 +175,15 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnAgregarCampoTelefono)
                     .addComponent(txtTelefonoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtTelefonoOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnAgregarCampoCorreo)
-                    .addComponent(txtCorreoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -209,8 +212,12 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                 ResultSet rs = stmt.executeQuery("CALL select_numbers_emails_address (" + id_contact + ");");
                 while(rs.next()){
                     try{
+                        int id_optional_number = 0;
+                        if("Laboral".equals(rs.getString("tag_numbers"))){
+                            id_optional_number = rs.getInt("id_number");
+                        }
                         Statement stmt2 = reg.createStatement();
-                        stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + rs.getInt("id_email") + ", 'Personal', '" + txtCorreoPersonal.getText() + "', " + rs.getInt("id_address") + ", 'Personal', '" + txtDireccion.getText() + "');");               
+                        stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_optional_number + ", 'Laboral', '" + txtTelefonoOpcional.getText() + "', " + rs.getInt("id_email") + ", 'Personal', '" + txtCorreo.getText() + "', " + rs.getInt("id_address") + ", 'Personal', '" + txtDireccion.getText() + "');");               
                         stmt2.close();
                     }catch(SQLException e){
                         System.out.println(e);
@@ -234,7 +241,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     public void ConsultarDatos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
+            ResultSet rs = stmt.executeQuery("CALL select_contacts (" + id_contact + ");");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
@@ -244,7 +251,12 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     txtApellido.setText(rs.getString("last_name"));
                     txtSegundoApellido.setText(rs.getString("second_last_name"));
                     txtTelefonoPersonal.setText(rs2.getString("number"));
-                    txtCorreoPersonal.setText(rs2.getString("email"));
+                    if("Laboral".equals(rs2.getString("tag_numbers"))){
+                        txtTelefonoOpcional.setText(rs2.getString("number"));
+                    }else{
+                        txtTelefonoOpcional.setText("");
+                    }
+                    txtCorreo.setText(rs2.getString("email"));
                     txtDireccion.setText(rs2.getString("address"));
                 }
                 rs2.close();
@@ -259,10 +271,10 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         String error = "";
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(txtCorreoPersonal.getText());
+        Matcher matcher = pattern.matcher(txtCorreo.getText());
         if("".equals(txtNombre.getText())) error = error + "El nombre es un campo requerido.\n";
         if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono es un campo requerido.\n";
-        if("".equals(txtCorreoPersonal.getText())){
+        if("".equals(txtCorreo.getText())){
             /* ### */
         }else{
             if(!matcher.matches()){
@@ -306,10 +318,9 @@ public class FrmEditarContacto extends javax.swing.JFrame {
          
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnAgregarCampoCorreo;
-    private javax.swing.JButton btnAgregarCampoTelefono;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -317,11 +328,12 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCorreoPersonal;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtSegundoApellido;
     private javax.swing.JTextField txtSegundoNombre;
+    private javax.swing.JTextField txtTelefonoOpcional;
     private javax.swing.JTextField txtTelefonoPersonal;
     // End of variables declaration//GEN-END:variables
 }
