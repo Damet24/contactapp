@@ -19,7 +19,6 @@ public class ManageInfo {
     }
     
     public void Add(String value, String tag){
-        List.add(new Item(value, tag));
         System.out.println(List);
     }
     

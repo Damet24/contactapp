@@ -24,11 +24,9 @@ public class ManejarInfo {
     static public JPanel mainPanel;
     
     static public void ListarUsuarios(JPanel panel, ArrayList<Item> List, int height, ManageInfo listIndex){
-        System.out.println(List);
         int cont = 0;
         LimpearUsuarios(panel);
         for(int i = 0; i < List.size(); i++){
-            System.out.println(List.get(i).getValue());
             ShowPanel(panel, new FrmInfoModelo(List.get(i).getValue(), List.get(i).getTag(), i, listIndex), 0, 55 * i);
             cont++;
         }
