@@ -10,10 +10,10 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    int id_contact, id_number;
+    String id_contact, id_number;
     Usuario usuario;
     
-    public FrmDetalleContacto(Usuario u, int id_contact, int id_number) {
+    public FrmDetalleContacto(Usuario u, String id_contact, String id_number) {
         initComponents();
         pnlDivisor.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
