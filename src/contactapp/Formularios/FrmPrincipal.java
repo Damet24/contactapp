@@ -151,6 +151,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Acerca de");
 
         jMenuItem4.setText("Información del programa");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -237,6 +242,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         con.Desconectar();
         ContactApp.CambiarFormulario(this, new FrmReporte(usuario));
     }//GEN-LAST:event_VerReporteActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        FrmAcercaDe form = new FrmAcercaDe();
+        form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
      public void ListarUsuarios(){
         try{
