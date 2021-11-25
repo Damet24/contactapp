@@ -235,7 +235,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmReporte());
+        ContactApp.CambiarFormulario(this, new FrmReporte(usuario));
     }//GEN-LAST:event_VerReporteActionPerformed
 
      public void ListarUsuarios(){

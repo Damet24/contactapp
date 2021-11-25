@@ -9,11 +9,13 @@ public class FrmReporte extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
+    Usuario usuario;
     
-    public FrmReporte() {
+    public FrmReporte(Usuario u) {
         initComponents();
         con = new Conector();
         reg = con.getConector();
+        usuario = u;
         ListarReporte();
     }
 
@@ -27,6 +29,11 @@ public class FrmReporte extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reportes");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tblReporte1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblReporte1.setModel(new javax.swing.table.DefaultTableModel(
@@ -55,13 +62,18 @@ public class FrmReporte extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+    }//GEN-LAST:event_formWindowClosing
 
     public void ListarReporte(){
         DefaultTableModel model = new DefaultTableModel();
@@ -107,7 +119,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte().setVisible(true);
+                // new FrmReporte().setVisible(true);
             }
         });
     }
