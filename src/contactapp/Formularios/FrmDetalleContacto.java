@@ -10,10 +10,10 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    String id_contact, id_number, Nombre;
+    int id_contact, id_number;
     Usuario usuario;
     
-    public FrmDetalleContacto(Usuario u, String id_contact, String id_number) {
+    public FrmDetalleContacto(Usuario u, int id_contact, int id_number) {
         initComponents();
         pnlDivisor.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
@@ -269,25 +269,51 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
-                if(rs2.next()){
-                    Nombre = rs.getString("name") + " " + rs.getString("last_name");
-                    lblNombre.setText(Nombre);
-                    lblTelefonoPersonal.setText(rs2.getString("number"));
-                    lblTagTelefonoPersonal.setText(rs2.getString("tag_numbers"));
-                    lblTagTelefonoOpcional.setText("");
-                    lblTagTelefonoOpcional.setText("");
+                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getInt("id_contact") + ");");
+                while(rs.next()){
+                    lblNombre.setText(rs.getString("name") + " " + rs.getString("last_name"));
+                    if("Personal".equals(rs2.getString("tag_numbers"))){
+                        lblTelefonoPersonal.setText(rs2.getString("number"));
+                        lblTagTelefonoPersonal.setText(rs2.getString("tag_numbers"));
+                    }else if("Laboral".equals(rs2.getString("tag_numbers"))){
+                        lblTelefonoOpcional.setText(rs2.getString("number"));
+                        lblTagTelefonoOpcional.setText(rs2.getString("tag_numbers"));
+                    }
                     lblCorreo.setText(rs2.getString("email"));
-                    lblTagCorreo.setText(rs2.getString("tag_emails"));
+                    lblTagCorreo.setText(rs2.getString("tag_email"));
                     lblDireccion.setText(rs2.getString("address"));
                     lblTagDireccion.setText(rs2.getString("tag_address"));
                 }
                 rs2.close();
                 stmt2.close();
-            }            
+            }
         }catch(SQLException e){
             System.out.println(e);
         }
+//        try{
+//            stmt = reg.createStatement();
+//            ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
+//            while(rs.next()){
+//                Statement stmt2 = reg.createStatement();
+//                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
+//                if(rs2.next()){
+//                    Nombre = rs.getString("name") + " " + rs.getString("last_name");
+//                    lblNombre.setText(Nombre);
+//                    lblTelefonoPersonal.setText(rs2.getString("number"));
+//                    lblTagTelefonoPersonal.setText(rs2.getString("tag_numbers"));
+//                    lblTagTelefonoOpcional.setText("");
+//                    lblTagTelefonoOpcional.setText("");
+//                    lblCorreo.setText(rs2.getString("email"));
+//                    lblTagCorreo.setText(rs2.getString("tag_emails"));
+//                    lblDireccion.setText(rs2.getString("address"));
+//                    lblTagDireccion.setText(rs2.getString("tag_address"));
+//                }
+//                rs2.close();
+//                stmt2.close();
+//            }            
+//        }catch(SQLException e){
+//            System.out.println(e);
+//        }
     }
     
     public static void main(String args[]) {
