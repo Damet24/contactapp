@@ -245,8 +245,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         FrmAcercaDe form = new FrmAcercaDe();
-        form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        form.setLocationRelativeTo(this);
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -286,7 +284,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void CantidadContactos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT count_contacts(" + usuario.getId() + ") as amount;");
+            ResultSet rs = stmt.executeQuery("SELECT amount_contacts(" + usuario.getId() + ") as amount;");
             while(rs.next()){
                 lblCantidad.setText(rs.getString("amount"));
             }
