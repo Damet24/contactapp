@@ -56,6 +56,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtBuscar.setText("jTextField1");
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -227,8 +232,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        BuscorContactos();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmReporte(usuario));
+    }//GEN-LAST:event_VerReporteActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        FrmAcercaDe form = new FrmAcercaDe();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        BuscorContactos();
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    public void BuscorContactos(){
         try{
-            System.out.println("buscar: " + txtBuscar.getText());
             if(!"".equals(txtBuscar.getText())){
                 stmt = reg.createStatement();
                 ResultSet rs = stmt.executeQuery("CALL search_contact ('%" + txtBuscar.getText() + "%', " + usuario.getId() + ");");
@@ -254,18 +276,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
-        con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmReporte(usuario));
-    }//GEN-LAST:event_VerReporteActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        FrmAcercaDe form = new FrmAcercaDe();
-        form.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
+    }
      public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
