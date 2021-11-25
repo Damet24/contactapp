@@ -19,7 +19,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         txtApellido.setText("");
         txtSegundoApellido.setText("");
         txtTelefonoPersonal.setText("");
-        txtTelefonoOpcional.setText("");
+        txtTelefonoOpcional.setText(" ");
         txtCorreo.setText("");
         txtDireccion.setText("");
         con = new Conector();
@@ -209,7 +209,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement(); 
             if("".equals(ValidorCampos())){
-                String sql = "call insert_contact('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', 'Personal', '" + txtTelefonoPersonal.getText() + "', 'Laboral', '" + txtTelefonoOpcional.getText() + "', 'Personal', '" + txtCorreo.getText() + "', 'Personal', '" + txtDireccion.getText() + "', " + usuario.getId() + ");";
+                String sql = "CALL insert_contact ('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', 'Personal', '" + txtTelefonoPersonal.getText() + "', 'Laboral', '" + txtTelefonoOpcional.getText() + "', 'Personal', '" + txtCorreo.getText() + "', 'Personal', '" + txtDireccion.getText() + "', " + usuario.getId() + ");";
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Contacto guardado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
                 ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
