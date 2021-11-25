@@ -266,7 +266,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     public void ObtenerDatos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL select_contacts (" + id_contact + ");");
+            ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");

@@ -229,10 +229,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL search_contact ('" + txtBuscar.getText() + "', " + usuario.getId() + ");");
+            ResultSet rs = stmt.executeQuery("CALL search_contact ('%" + txtBuscar.getText() + "%', " + usuario.getId() + ");");
+            LimpearUsuarios();
+            cont = 0;
             while(rs.next()){
-                System.out.println(rs.getString("name") + " " + rs.getString("last_name") + " " + rs.getString("fk_user"));                
+                Statement stmt2 = reg.createStatement();
+                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
+                if(rs2.next()){
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                }
+                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                rs2.close();
+                stmt2.close();
+                cont++;      
             }
+            ShowPanel(new JPanel(), 0, 100 * cont);
+            MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+            CantidadContactos();
         }catch(SQLException e){
             System.out.println(e);
         }

@@ -242,7 +242,6 @@ public class FrmEditarContacto extends javax.swing.JFrame {
 
     public void ConsultarDatos(){
         try{
-            System.out.println("");
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("select * from contacts where id_contact = " + id_contact + ";");
             while(rs.next()){
