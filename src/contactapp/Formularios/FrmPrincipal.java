@@ -41,6 +41,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        VerReporte = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -153,6 +155,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Reportes");
+
+        VerReporte.setText("Ver reporte");
+        VerReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerReporteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(VerReporte);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,6 +232,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmReporte());
+    }//GEN-LAST:event_VerReporteActionPerformed
 
      public void ListarUsuarios(){
         try{
@@ -312,11 +331,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPane;
+    private javax.swing.JMenuItem VerReporte;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoContacto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
