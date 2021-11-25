@@ -1,5 +1,6 @@
 package contactapp.Formularios;
 
+import com.sun.javafx.image.impl.IntArgb;
 import contactapp.*;
 import java.awt.*;
 import java.sql.*;
@@ -269,7 +270,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
                 ShowPanel(new JPanel(), 0, 100 * cont);
                 MainPane.setPreferredSize(new Dimension(700, 100 * cont));
-                CantidadContactos();
+                lblCantidad.setText(cont + "");
             }else {
                 ListarUsuarios();
             }
@@ -277,6 +278,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
+    
      public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
