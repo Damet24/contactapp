@@ -19,7 +19,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         txtApellido.setText("");
         txtSegundoApellido.setText("");
         txtTelefonoPersonal.setText("");
-        txtTelefonoOpcional.setText(" ");
+        txtTelefonoOpcional.setText("");
         txtCorreo.setText("");
         txtDireccion.setText("");
         con = new Conector();

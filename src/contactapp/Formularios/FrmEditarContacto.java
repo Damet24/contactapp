@@ -12,7 +12,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     Usuario usuario;
-    String numero_opcional = null, tag_numero_opcional = null;
+    String numero_opcional = "", tag_numero_opcional = null;
     int id_numero_opcional = 0, id_correo = 0, id_direccion = 0;
     
     public FrmEditarContacto(Usuario u, String id_contact, String id_number) {
@@ -210,17 +210,15 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement();
             if("".equals(ValidorCampos())){
-                if(numero_opcional != null){
-                    ResultSet rs = stmt.executeQuery("CALL select_id_optional_number (" + numero_opcional + ");");
-                    while(rs.next()){
-                        id_numero_opcional = rs.getInt("id_number");
-                        tag_numero_opcional = "Laboral";
-                    }
-                    rs.close();
-                    stmt.close();
+                ResultSet rs = stmt.executeQuery("SELECT id_number FROM numbers WHERE number = '" + numero_opcional + "' and fk_contact = '35' and tag_numbers = 'Laboral';");
+                while(rs.next()){
+                    id_numero_opcional = rs.getInt("id_number");
+                    tag_numero_opcional = "Laboral";
                 }
+                rs.close();
+                stmt.close();
                 Statement stmt2 = reg.createStatement();
-                stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_numero_opcional + ", '" + tag_numero_opcional + "', '" + txtTelefonoOpcional.getText() + "', " + id_correo + ", 'Personal', '" + txtCorreo.getText() + "', " + id_direccion + ", 'Personal', '" + txtDireccion.getText() + "');");
+                stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_numero_opcional + ", 'Laboral', '" + txtTelefonoOpcional.getText() + "', " + id_correo + ", 'Personal', '" + txtCorreo.getText() + "', " + id_direccion + ", 'Personal', '" + txtDireccion.getText() + "');");
                 stmt2.close();
                 id_numero_opcional = 0;
                 tag_numero_opcional = null;
@@ -254,7 +252,10 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     txtSegundoApellido.setText(rs.getString("second_last_name"));                                        
                     if("Laboral".equals(rs2.getString("tag_numbers"))){
                         txtTelefonoOpcional.setText(rs2.getString("number"));
-                        numero_opcional = rs2.getString("number");                        
+                        System.out.println("numero: " + numero_opcional);
+                        System.out.println(rs2.getString("number").length());
+                        numero_opcional = rs2.getString("number");
+
                     }else{
                         txtTelefonoOpcional.setText("");
                         txtTelefonoPersonal.setText(rs2.getString("number"));
