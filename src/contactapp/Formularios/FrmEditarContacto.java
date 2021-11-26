@@ -210,7 +210,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement();
             if("".equals(ValidorCampos())){
-                ResultSet rs = stmt.executeQuery("SELECT id_number FROM numbers WHERE number = '" + numero_opcional + "' and fk_contact = '35' and tag_numbers = 'Laboral';");
+                ResultSet rs = stmt.executeQuery("SELECT id_number FROM numbers WHERE number = '" + numero_opcional + "' and fk_contact = '" + id_contact + "' and tag_numbers = 'Laboral';");
                 while(rs.next()){
                     id_numero_opcional = rs.getInt("id_number");
                     tag_numero_opcional = "Laboral";
