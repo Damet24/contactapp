@@ -100,7 +100,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Teléfono (Personal):");
+        jLabel8.setText("Teléfono 1:");
 
         txtTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTelefonoPersonal.setText("jTextField4");
@@ -109,7 +109,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         txtTelefonoOpcional.setText("jTextField4");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Teléfono (Opcional):");
+        jLabel10.setText("Teléfono 2:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Correo:");
