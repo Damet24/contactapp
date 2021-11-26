@@ -110,13 +110,13 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         jLabel4.setText("Correo:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Teléfono (Personal):");
+        jLabel5.setText("Teléfono 1:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Segundo apellido:");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Teléfono (Opcional):");
+        jLabel10.setText("Teléfono 2:");
 
         txtTelefonoOpcional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTelefonoOpcional.setText("jTextField4");
@@ -153,7 +153,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +210,8 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement();
             if("".equals(ValidorCampos())){
-                ResultSet rs = stmt.executeQuery("SELECT id_number FROM numbers WHERE number = '" + numero_opcional + "' and fk_contact = '" + id_contact + "' and tag_numbers = 'Laboral';");
+                ResultSet rs = stmt.executeQuery("call select_id_optional_number('" + numero_opcional + "', '" + id_contact + "');");
+                
                 while(rs.next()){
                     id_numero_opcional = rs.getInt("id_number");
                     tag_numero_opcional = "Laboral";
@@ -280,11 +281,13 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         Pattern pattern2 = Pattern.compile("[0-9]+");
 
         Matcher match = pattern2.matcher(txtTelefonoPersonal.getText());
+        Matcher match2 = pattern2.matcher(txtTelefonoOpcional.getText());
         Matcher matcher = pattern.matcher(txtCorreo.getText());
 
         if("".equals(txtNombre.getText())) error = error + "El nombre es un campo requerido.\n";
         if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono es un campo requerido.\n";
-        if(txtTelefonoPersonal.getText().length() != 10 || !match.matches()) error = error + "\nIgrese un numero valido.";
+        if(txtTelefonoPersonal.getText().length() != 10 || !match.matches()) error = error + "\nNumero 1: Igrese un numero valido.";
+        if(!match2.matches()) error = error + "\nNumero 2: Igrese un numero valido.";
         if("".equals(txtCorreo.getText())){
             /* ### */
         }else{
