@@ -299,17 +299,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnVolverActionPerformed
-
-    class Fondo extends JPanel {
-        private Image Imagen;        
-        @Override
-        public void paint(Graphics g){
-            Imagen = new ImageIcon(getClass().getResource("/Imagenes/user.png")).getImage();
-            g.drawImage(Imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
     
     public void ObtenerDatos(){
         try{
@@ -349,7 +338,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                         lblTagDireccion.setText("");
                     }
                 }
-                pnlDivisor.setPreferredSize(new Dimension(280, 116));
+//                pnlDivisor.setPreferredSize(new Dimension(280, 116));
                 rs2.close();
                 stmt2.close();
             }

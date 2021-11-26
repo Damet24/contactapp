@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import contactapp.*;
 
+
 public class FrmContactoModelo extends javax.swing.JPanel {
     
     String id_contact, id_number;
@@ -137,17 +138,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnDetallesActionPerformed
-    
-    class Fondo extends JPanel {
-        private Image Imagen;        
-        @Override
-        public void paint(Graphics g){
-            Imagen = new ImageIcon(getClass().getResource("/Imagenes/user.png")).getImage();
-            g.drawImage(Imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalles;

@@ -234,7 +234,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        BuscorContactos();
+        BuscarContactos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
@@ -248,15 +248,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        BuscorContactos();
+        BuscarContactos();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    public void BuscorContactos(){
+    public void BuscarContactos(){
         try{
             if(!"".equals(txtBuscar.getText())){
                 stmt = reg.createStatement();
                 ResultSet rs = stmt.executeQuery("CALL search_contact ('%" + txtBuscar.getText() + "%', " + usuario.getId() + ");");
-                LimpearUsuarios();
+                LimpiarUsuarios();
                 cont = 0;
                 while(rs.next()){
                     Statement stmt2 = reg.createStatement();
@@ -280,12 +280,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
-     public void ListarUsuarios(){
+    public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("CALL select_contacts(" + usuario.getId() + ");");
             cont = 0;
-            LimpearUsuarios();
+            LimpiarUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
@@ -335,7 +335,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
-    public void LimpearUsuarios(){
+    public void LimpiarUsuarios(){
         MainPane.removeAll();
     }
     
