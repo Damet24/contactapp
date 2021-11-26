@@ -220,10 +220,8 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                 Statement stmt2 = reg.createStatement();
                 stmt2.executeUpdate("CALL update_contact (" + id_contact + ", '" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', " + id_number + ", 'Personal', '" + txtTelefonoPersonal.getText() + "', " + id_numero_opcional + ", 'Laboral', '" + txtTelefonoOpcional.getText() + "', " + id_correo + ", 'Personal', '" + txtCorreo.getText() + "', " + id_direccion + ", 'Personal', '" + txtDireccion.getText() + "');");
                 stmt2.close();
-                id_numero_opcional = 0;
-                tag_numero_opcional = null;
-                id_numero_opcional = 0;
                 JOptionPane.showMessageDialog(this, "Contacto actualizado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
+                con.Desconectar();
                 ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
             }else{
                 JOptionPane.showMessageDialog(this, ValidorCampos(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -244,7 +242,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery("select * from contacts where id_contact = " + id_contact + ";");
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getString("id_contact") + ");");
+                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + id_contact + ");");
                 while(rs2.next()){
                     txtNombre.setText(rs.getString("name"));
                     txtSegundoNombre.setText(rs.getString("second_name"));
@@ -252,12 +250,9 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                     txtSegundoApellido.setText(rs.getString("second_last_name"));                                        
                     if("Laboral".equals(rs2.getString("tag_numbers"))){
                         txtTelefonoOpcional.setText(rs2.getString("number"));
-                        System.out.println("numero: " + numero_opcional);
-                        System.out.println(rs2.getString("number").length());
                         numero_opcional = rs2.getString("number");
-
                     }else{
-                        txtTelefonoOpcional.setText("");
+                        txtTelefonoOpcional.setText("");                        
                         txtTelefonoPersonal.setText(rs2.getString("number"));
                     }
                     txtCorreo.setText(rs2.getString("email"));
