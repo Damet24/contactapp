@@ -19,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         con = new Conector();
         reg = con.getConector();
         usuario = u;
+        if(!"1".equals(usuario.getId())) jMenu3.setVisible(false);
         txtBuscar.setText("");
         ListarUsuarios();        
     }
@@ -327,7 +328,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void EliminarUsuario(String id){
         try{
             stmt = reg.createStatement();
-            stmt.execute("DELETE FROM `contacts` WHERE `contacts`.`id_contact` = " + id);
+            stmt.execute("call delete_contact('" + id + "');");
             ListarUsuarios();
         }catch(SQLException e){
             System.out.println(e);

@@ -124,7 +124,10 @@ public class FrmContactoModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        root.EliminarUsuario(id_contact + "");
+        int Opcion = JOptionPane.showConfirmDialog(root, "¿Seguro que quieres eliminar este contacto?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if(Opcion == JOptionPane.YES_OPTION){
+            root.EliminarUsuario(id_contact + "");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
