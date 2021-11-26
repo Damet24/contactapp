@@ -19,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         con = new Conector();
         reg = con.getConector();
         usuario = u;
+        if(!"1".equals(usuario.getId())) jMenu3.setVisible(false);
         txtBuscar.setText("");
         ListarUsuarios();        
     }
