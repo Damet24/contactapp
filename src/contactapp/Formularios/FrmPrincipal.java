@@ -328,7 +328,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void EliminarUsuario(String id){
         try{
             stmt = reg.createStatement();
-            stmt.execute("DELETE FROM `contacts` WHERE `contacts`.`id_contact` = " + id);
+            stmt.execute("call delete_contact('" + id + "');");
             ListarUsuarios();
         }catch(SQLException e){
             System.out.println(e);
