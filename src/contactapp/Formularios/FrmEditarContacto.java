@@ -287,7 +287,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
         if("".equals(txtNombre.getText())) error = error + "El nombre es un campo requerido.\n";
         if("".equals(txtTelefonoPersonal.getText())) error = error + "El teléfono es un campo requerido.\n";
         if(txtTelefonoPersonal.getText().length() != 10 || !match.matches()) error = error + "\nNumero 1: Igrese un numero valido.";
-        if(!match2.matches()) error = error + "\nNumero 2: Igrese un numero valido.";
+        if(txtTelefonoOpcional.getText().length() > 0 && !match2.matches()) error = error + "\nNumero 2: Igrese un numero valido.";
         if("".equals(txtCorreo.getText())){
             /* ### */
         }else{
