@@ -296,15 +296,12 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     
     public void ObtenerDatos(){
         try{
-            System.out.println("join");
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("CALL select_contact (" + id_contact + ");");
             while(rs.next()){
-                System.out.println("join2");
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getInt("id_contact") + ");");
                 while(rs2.next()){
-                    System.out.println("join3");
                     lblNombres.setText(rs.getString("name") + " " + rs.getString("second_name"));
                     lblApellidos.setText(rs.getString("last_name") + " " + rs.getString("second_last_name"));
                     if("Personal".equals(rs2.getString("tag_numbers"))){

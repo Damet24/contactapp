@@ -116,28 +116,30 @@ public class FrmIngresar extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String correo = "";
-        String clave = "";
+        String contraseña = "";
         String id = "";
         String nombre = "";
         Usuario usuario = null;
         try {
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("call select_user('" + txtCorreo.getText() + "');");
-        
-            while(rs.next()){
-                correo = rs.getString("email");
-                clave = rs.getString("password");
+            ResultSet rs = stmt.executeQuery("call select_user ('" + txtCorreo.getText() + "');");
+            if(rs.next()){                
+                correo = rs.getString("email");                
+                contraseña = rs.getString("password");
                 id = rs.getString("id_user");
                 nombre = rs.getString("name");
-                usuario = new Usuario(id, nombre, correo);
-            }            
-            if(txtClave.getText().equals(clave)){
+                usuario = new Usuario(id, nombre, correo);  
+                if(txtClave.getText().equals(contraseña)){
                 con.Desconectar();
                 ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
-            }else {
-                JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
-            }
-            
+                }else {
+                    JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "El usuario no existe", "Error", JOptionPane.WARNING_MESSAGE);                    
+                rs.close();;
+                stmt.close();
+            }  
         }catch(SQLException e){
             System.out.println(e);
         }
