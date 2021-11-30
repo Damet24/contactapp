@@ -11,17 +11,15 @@ public class FrmEditarContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    Usuario usuario;
     String numero_opcional = "", tag_numero_opcional = null;
     int id_numero_opcional = 0, id_correo = 0, id_direccion = 0;
     
-    public FrmEditarContacto(Usuario u, String id_contact, String id_number) {
+    public FrmEditarContacto(String id_contact, String id_number) {
         initComponents();
         this.id_contact = id_contact;
         this.id_number = id_number;
         con = new Conector();
         reg = con.getConector();
-        usuario = u;
         ConsultarDatos();
     }
 
@@ -203,7 +201,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        ContactApp.CambiarFormulario(this, new FrmPrincipal());
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -223,7 +221,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
                 stmt2.close();
                 JOptionPane.showMessageDialog(this, "Contacto actualizado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
                 con.Desconectar();
-                ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+                ContactApp.CambiarFormulario(this, new FrmPrincipal());
             }else{
                 JOptionPane.showMessageDialog(this, ValidorCampos(), "Error", JOptionPane.WARNING_MESSAGE);
             }
@@ -234,7 +232,7 @@ public class FrmEditarContacto extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+        ContactApp.CambiarFormulario(this, new FrmPrincipal());
     }//GEN-LAST:event_formWindowClosing
 
     public void ConsultarDatos(){

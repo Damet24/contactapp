@@ -1,6 +1,5 @@
 package contactapp.Formularios;
 
-import com.sun.javafx.image.impl.IntArgb;
 import contactapp.*;
 import java.awt.*;
 import java.sql.*;
@@ -11,15 +10,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    Usuario usuario;
     int cont = 0;
     
-    public FrmPrincipal(Usuario u) {
+    public FrmPrincipal() {
         initComponents();
         con = new Conector();
         reg = con.getConector();
-        usuario = u;
-        if(!"1".equals(usuario.getId())) jMenu3.setVisible(false);
+        if(!"1".equals(Sesion.getUserId())) jMenu3.setVisible(false);
         txtBuscar.setText("");
         ListarUsuarios();        
     }
@@ -220,7 +217,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnNuevoContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoContactoActionPerformed
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmCrearContacto(usuario));
+        ContactApp.CambiarFormulario(this, new FrmCrearContacto());
     }//GEN-LAST:event_btnNuevoContactoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -230,7 +227,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmCrearContacto(usuario));
+        ContactApp.CambiarFormulario(this, new FrmCrearContacto());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -239,7 +236,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void VerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerReporteActionPerformed
         con.Desconectar();
-        ContactApp.CambiarFormulario(this, new FrmReporte(usuario));
+        ContactApp.CambiarFormulario(this, new FrmReporte());
     }//GEN-LAST:event_VerReporteActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -255,16 +252,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         try{
             if(!"".equals(txtBuscar.getText())){
                 stmt = reg.createStatement();
-                ResultSet rs = stmt.executeQuery("CALL search_contact ('%" + txtBuscar.getText() + "%', " + usuario.getId() + ");");
+                ResultSet rs = stmt.executeQuery("CALL search_contact ('%" + txtBuscar.getText() + "%', " + Sesion.getUserId() + ");");
                 LimpiarUsuarios();
                 cont = 0;
                 while(rs.next()){
                     Statement stmt2 = reg.createStatement();
                     ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                     if(rs2.next()){
-                        ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                        ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                     }
-                    else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                    else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                     rs2.close();
                     stmt2.close();
                     cont++;      
@@ -283,16 +280,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void ListarUsuarios(){
         try{
             stmt = reg.createStatement(); 
-            ResultSet rs = stmt.executeQuery("CALL select_contacts(" + usuario.getId() + ");");
+            ResultSet rs = stmt.executeQuery("CALL select_contacts(" + Sesion.getUserId() + ");");
             cont = 0;
             LimpiarUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
+                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                 rs2.close();
                 stmt2.close();
                 cont++;
@@ -316,7 +313,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void CantidadContactos(){
         try{
             stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT amount_contacts(" + usuario.getId() + ") as amount;");
+            ResultSet rs = stmt.executeQuery("SELECT amount_contacts(" + Sesion.getUserId() + ") as amount;");
             while(rs.next()){
                 lblCantidad.setText(rs.getString("amount"));
             }
@@ -366,7 +363,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmPrincipal(null).setVisible(true);
+                new FrmPrincipal().setVisible(true);
             }
         });
     }
