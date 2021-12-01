@@ -11,6 +11,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     int cont = 0;
+    boolean inInbox = false;
     
     public FrmPrincipal() {
         initComponents();
@@ -262,7 +263,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
-        
+        if(inInbox == false) {
+            ListarUsuariosCompartidos();
+            inInbox = true;
+            btnInbox.setText("Contactos");
+        }
+        else{
+            ListarUsuarios();
+            inInbox = false;
+            btnInbox.setText("Inbox");
+        }
     }//GEN-LAST:event_btnInboxActionPerformed
 
     public void BuscarContactos(){
@@ -307,6 +317,35 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                 }
                 else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
+                rs2.close();
+                stmt2.close();
+                cont++;
+            }
+            ShowPanel(new JPanel(), 0, 100 * cont);
+            MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+            CantidadContactos();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void ListarUsuariosCompartidos(){
+        try{
+            stmt = reg.createStatement(); 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM inbox WHERE fk_user_receiver = '" + Sesion.getUserId() + "';");
+            cont = 0;
+            LimpiarUsuarios();
+            while(rs.next()){
+                Statement stmt2 = reg.createStatement();
+                Statement stmt3 = reg.createStatement();
+                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address ('" + rs.getString("fk_contact") + "');");
+                ResultSet rs3 = stmt3.executeQuery("CALL select_contact ('" + rs.getString("fk_contact") + "');");                
+                if(rs3.next() && rs2.next()){
+                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), this), 0, 100 * cont);
+                }
+                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), this), 0, 100 * cont);
+                rs3.close();
+                stmt3.close();
                 rs2.close();
                 stmt2.close();
                 cont++;
