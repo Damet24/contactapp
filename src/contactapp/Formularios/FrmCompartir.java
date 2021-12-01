@@ -85,7 +85,6 @@ public class FrmCompartir extends javax.swing.JFrame {
         jLabel7.setText("Destinatario:");
 
         txtDestinatario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtDestinatario.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +162,8 @@ public class FrmCompartir extends javax.swing.JFrame {
             stmt2.executeUpdate("CALL insert_inbox (" + id_user_receiver + ", " + Sesion.getUserId() + ", " + id_contact + ", '" + txtDescripcion.getText() + "');");
             stmt2.close();
             JOptionPane.showMessageDialog(this, "Contacto compartido", "Hecho", JOptionPane.INFORMATION_MESSAGE);
+            con.Desconectar();
+            ContactApp.CambiarFormulario(this, new FrmPrincipal());
         }catch(SQLException e){
             System.out.println(e);            
         }

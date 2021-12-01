@@ -157,7 +157,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
     private void btnDetalles1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalles1ActionPerformed
         try{
-            ContactApp.CambiarFormulario(root, new FrmCompartir("", "", 1));
+            ContactApp.CambiarFormulario(root, new FrmCompartir(lblNombre.getText(), lblNumero.getText(), Integer.parseInt(id_contact)));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

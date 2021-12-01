@@ -48,7 +48,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnEditar1 = new javax.swing.JButton();
+        btnCompartir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalles del Contacto");
@@ -204,11 +204,11 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        btnEditar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditar1.setText("Compartir");
-        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCompartir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCompartir.setText("Compartir");
+        btnCompartir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditar1ActionPerformed(evt);
+                btnCompartirActionPerformed(evt);
             }
         });
 
@@ -232,7 +232,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCompartir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -276,7 +276,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCompartir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
 
@@ -310,14 +310,14 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-        try{
-            con.Desconectar();
-            ContactApp.CambiarFormulario(this, new FrmCompartir());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_btnEditar1ActionPerformed
+    private void btnCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompartirActionPerformed
+//        try{
+//            con.Desconectar();
+//            ContactApp.CambiarFormulario(this, new FrmCompartir());
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+    }//GEN-LAST:event_btnCompartirActionPerformed
     
     public void ObtenerDatos(){
         try{
@@ -399,8 +399,8 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCompartir;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEditar1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
