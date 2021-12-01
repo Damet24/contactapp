@@ -277,7 +277,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 cont = 0;
                 while(rs.next()){
                     Statement stmt2 = reg.createStatement();
-                    ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
+                    ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
                     if(rs2.next()){
                         ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                     }
@@ -305,7 +305,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             LimpearUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
+                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
                 if(rs2.next()){
                     ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), usuario, this), 0, 100 * cont);
                 }
