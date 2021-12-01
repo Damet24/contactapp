@@ -164,7 +164,7 @@ public class FrmCompartir extends javax.swing.JFrame {
             stmt2.close();
             JOptionPane.showMessageDialog(this, "Contacto compartido", "Hecho", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
-            System.out.println(e);
+            System.out.println(e);            
         }
     }//GEN-LAST:event_btnCompartirActionPerformed
     
