@@ -262,7 +262,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnInboxActionPerformed
 
     public void BuscarContactos(){
