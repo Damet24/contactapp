@@ -32,6 +32,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnNuevoContacto = new javax.swing.JButton();
+        btnInbox = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MainPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -81,6 +82,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnInbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnInbox.setText("Inbox");
+        btnInbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -88,10 +98,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnInbox)
                 .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
@@ -101,7 +113,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -113,11 +126,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MainPane.setLayout(MainPaneLayout);
         MainPaneLayout.setHorizontalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 899, Short.MAX_VALUE)
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 549, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(MainPane);
@@ -203,7 +216,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(lblCantidad))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,6 +263,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         BuscorContactos();
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInboxActionPerformed
 
     public void BuscorContactos(){
         try{
@@ -375,6 +392,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel MainPane;
     private javax.swing.JMenuItem VerReporte;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnInbox;
     private javax.swing.JButton btnNuevoContacto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
