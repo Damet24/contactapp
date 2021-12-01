@@ -206,11 +206,6 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
 
         btnEditar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditar1.setText("Compartir");
-        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditar1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
