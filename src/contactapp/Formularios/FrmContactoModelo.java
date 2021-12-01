@@ -157,7 +157,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
     private void btnDetalles1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalles1ActionPerformed
         try{
-            ContactApp.CambiarFormulario(root, new FrmCompartir());
+            ContactApp.CambiarFormulario(root, new FrmCompartir("", "", 1));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -172,7 +172,10 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         if(s == JFileChooser.APPROVE_OPTION){
             String ruta = j.getSelectedFile().getAbsolutePath();
             txtruta = ruta;
-            root.SubirImagen(id_contact, txtruta);
+//            root.SubirImagen(id_contact, txtruta);
+            pnlFotoUsuario = new Fondo(txtruta);
+            pnlFotoUsuario.revalidate();
+            pnlFotoUsuario.repaint();
         }
     }//GEN-LAST:event_pnlFotoUsuarioMouseClicked
 
