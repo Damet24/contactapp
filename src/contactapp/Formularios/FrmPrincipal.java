@@ -12,8 +12,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Connection reg;
     int cont = 0;
     
-    //
-    
     public FrmPrincipal() {
         initComponents();
         con = new Conector();
