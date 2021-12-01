@@ -1,6 +1,5 @@
 package contactapp.Formularios;
 
-import java.awt.*;
 import javax.swing.*;
 import contactapp.*;
 

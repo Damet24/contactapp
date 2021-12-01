@@ -12,8 +12,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Connection reg;
     int cont = 0;
     
-    //
-    
     public FrmPrincipal() {
         initComponents();
         con = new Conector();
@@ -97,7 +95,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,11 +123,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MainPane.setLayout(MainPaneLayout);
         MainPaneLayout.setHorizontalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 899, Short.MAX_VALUE)
+            .addGap(0, 878, Short.MAX_VALUE)
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(MainPane);
@@ -215,7 +213,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(lblCantidad))
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -263,6 +261,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BuscarContactos();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
+    private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInboxActionPerformed
+
     public void BuscarContactos(){
         try{
             if(!"".equals(txtBuscar.getText())){
@@ -272,7 +274,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 cont = 0;
                 while(rs.next()){
                     Statement stmt2 = reg.createStatement();
-                    ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
+                    ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                     if(rs2.next()){
                         ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                     }
@@ -300,7 +302,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             LimpiarUsuarios();
             while(rs.next()){
                 Statement stmt2 = reg.createStatement();
-                ResultSet rs2 = stmt2.executeQuery("SELECT * FROM `numbers` where fk_contact = " + rs.getString("id_contact") + ";");
+                ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                 if(rs2.next()){
                     ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
                 }
