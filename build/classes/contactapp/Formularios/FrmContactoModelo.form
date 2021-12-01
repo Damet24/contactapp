@@ -94,8 +94,11 @@
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="pnlFotoUsuario">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pnlFotoUsuarioMouseClicked"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo(&quot;&quot;)"/>
       </AuxValues>
 
       <Layout>

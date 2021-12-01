@@ -339,6 +339,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
     
+    public void SubirImagen(String IdContacto, String ImgRuta){
+        System.out.println(IdContacto);
+        System.out.println(ImgRuta);
+    }
+    
     public void EliminarUsuario(String id){
         try{
             stmt = reg.createStatement();

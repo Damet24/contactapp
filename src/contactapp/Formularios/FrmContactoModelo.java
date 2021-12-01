@@ -2,11 +2,12 @@ package contactapp.Formularios;
 
 import javax.swing.*;
 import contactapp.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class FrmContactoModelo extends javax.swing.JPanel {
     
-    String id_contact, id_number;
+    String id_contact, id_number, txtruta;
     FrmPrincipal root;
     
     public FrmContactoModelo(String nombre, String numero, String id_contact, String id_number, FrmPrincipal root) {
@@ -24,7 +25,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
         btnEditar = new javax.swing.JButton();
         btnDetalles = new javax.swing.JButton();
-        pnlFotoUsuario = new Fondo();
+        pnlFotoUsuario = new Fondo("");
         lblNombre = new javax.swing.JLabel();
         lblNumero = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
@@ -45,6 +46,12 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         btnDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetallesActionPerformed(evt);
+            }
+        });
+
+        pnlFotoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlFotoUsuarioMouseClicked(evt);
             }
         });
 
@@ -155,6 +162,19 @@ public class FrmContactoModelo extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnDetalles1ActionPerformed
+
+    private void pnlFotoUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFotoUsuarioMouseClicked
+        JFileChooser j = new JFileChooser();
+        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        j.setFileFilter(fil);
+        
+        int s = j.showOpenDialog(this);
+        if(s == JFileChooser.APPROVE_OPTION){
+            String ruta = j.getSelectedFile().getAbsolutePath();
+            txtruta = ruta;
+            root.SubirImagen(id_contact, txtruta);
+        }
+    }//GEN-LAST:event_pnlFotoUsuarioMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
