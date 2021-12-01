@@ -11,16 +11,14 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Statement stmt;
     Connection reg;
     String id_contact, id_number;
-    Usuario usuario;
     
-    public FrmDetalleContacto(Usuario u, String id_contact, String id_number) {
+    public FrmDetalleContacto(String id_contact, String id_number) {
         initComponents();
         pnlDivisor.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         pnlDivisor3.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
         con = new Conector();
         reg = con.getConector();
-        usuario = u;
         this.id_contact = id_contact;
         this.id_number = id_number;
         ObtenerDatos();
@@ -288,7 +286,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{
-            ContactApp.CambiarFormulario(this, new FrmEditarContacto(usuario, id_contact, id_number));
+            ContactApp.CambiarFormulario(this, new FrmEditarContacto( id_contact, id_number));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }        
@@ -297,7 +295,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try{
             con.Desconectar();        
-            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+            ContactApp.CambiarFormulario(this, new FrmPrincipal());
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -306,26 +304,11 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         try{
             con.Desconectar();        
-            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+            ContactApp.CambiarFormulario(this, new FrmPrincipal());
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditar1ActionPerformed
-
-    class Fondo extends JPanel {
-        private Image Imagen;        
-        @Override
-        public void paint(Graphics g){
-            Imagen = new ImageIcon(getClass().getResource("/Imagenes/user.png")).getImage();
-            g.drawImage(Imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
     
     public void ObtenerDatos(){
         try{
@@ -365,7 +348,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                         lblTagDireccion.setText("");
                     }
                 }
-                pnlDivisor.setPreferredSize(new Dimension(280, 116));
+//                pnlDivisor.setPreferredSize(new Dimension(280, 116));
                 rs2.close();
                 stmt2.close();
             }

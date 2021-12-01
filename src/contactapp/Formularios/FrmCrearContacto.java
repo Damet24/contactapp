@@ -10,9 +10,8 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    Usuario usuario;
     
-    public FrmCrearContacto(Usuario u) {
+    public FrmCrearContacto() {
         initComponents();
         txtNombre.setText("");
         txtSegundoNombre.setText("");
@@ -24,7 +23,6 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         txtDireccion.setText("");
         con = new Conector();
         reg = con.getConector();
-        usuario = u;
     }   
     
     @SuppressWarnings("unchecked")
@@ -100,7 +98,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Teléfono (Personal):");
+        jLabel8.setText("Teléfono 1:");
 
         txtTelefonoPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTelefonoPersonal.setText("jTextField4");
@@ -109,7 +107,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         txtTelefonoOpcional.setText("jTextField4");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Teléfono (Opcional):");
+        jLabel10.setText("Teléfono 2:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Correo:");
@@ -209,10 +207,10 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         try{
             stmt = reg.createStatement(); 
             if("".equals(ValidorCampos())){
-                String sql = "CALL insert_contact ('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', 'Personal', '" + txtTelefonoPersonal.getText() + "', 'Laboral', '" + txtTelefonoOpcional.getText() + "', 'Personal', '" + txtCorreo.getText() + "', 'Personal', '" + txtDireccion.getText() + "', " + usuario.getId() + ");";
+                String sql = "CALL insert_contact ('" + txtNombre.getText() + "', '" + txtSegundoNombre.getText() + "', '" + txtApellido.getText() + "', '" + txtSegundoApellido.getText() + "', 'Personal', '" + txtTelefonoPersonal.getText() + "', 'Laboral', '" + txtTelefonoOpcional.getText() + "', 'Personal', '" + txtCorreo.getText() + "', 'Personal', '" + txtDireccion.getText() + "', " + Sesion.getUserId() + ");";
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Contacto guardado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
-                ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+                ContactApp.CambiarFormulario(this, new FrmPrincipal());
                 con.Desconectar();                                
             }else{
                 JOptionPane.showMessageDialog(this, ValidorCampos(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -225,7 +223,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         try{
             con.Desconectar();        
-            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));        
+            ContactApp.CambiarFormulario(this, new FrmPrincipal());        
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -234,7 +232,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try{
             con.Desconectar();        
-            ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+            ContactApp.CambiarFormulario(this, new FrmPrincipal());
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -289,7 +287,7 @@ public class FrmCrearContacto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCrearContacto(null).setVisible(true);
+                new FrmCrearContacto().setVisible(true);
             }
         });
     }

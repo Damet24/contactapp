@@ -4,19 +4,18 @@ import java.awt.*;
 import javax.swing.*;
 import contactapp.*;
 
+
 public class FrmContactoModelo extends javax.swing.JPanel {
     
     String id_contact, id_number;
-    Usuario usuario;
     FrmPrincipal root;
     
-    public FrmContactoModelo(String nombre, String numero, String id_contact, String id_number, Usuario u, FrmPrincipal root) {
+    public FrmContactoModelo(String nombre, String numero, String id_contact, String id_number, FrmPrincipal root) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);
         this.id_contact = id_contact;
         this.id_number = id_number;
-        usuario = u;
         this.root = root;
     }
 
@@ -129,7 +128,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{           
-            ContactApp.CambiarFormulario(root, new FrmEditarContacto(usuario, id_contact, id_number));
+            ContactApp.CambiarFormulario(root, new FrmEditarContacto(id_contact, id_number));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -144,26 +143,12 @@ public class FrmContactoModelo extends javax.swing.JPanel {
 
     private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
         try{           
-            ContactApp.CambiarFormulario(root, new FrmDetalleContacto(usuario, id_contact, id_number));
+            ContactApp.CambiarFormulario(root, new FrmDetalleContacto(id_contact, id_number));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnDetallesActionPerformed
 
-    private void btnDetalles1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalles1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDetalles1ActionPerformed
-    
-    class Fondo extends JPanel {
-        private Image Imagen;        
-        @Override
-        public void paint(Graphics g){
-            Imagen = new ImageIcon(getClass().getResource("/Imagenes/user.png")).getImage();
-            g.drawImage(Imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalles;

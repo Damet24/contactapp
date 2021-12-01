@@ -119,7 +119,6 @@ public class FrmIngresar extends javax.swing.JFrame {
         String contraseña = "";
         String id = "";
         String nombre = "";
-        Usuario usuario = null;
         try {
             stmt = reg.createStatement();
             ResultSet rs = stmt.executeQuery("call select_user ('" + txtCorreo.getText() + "');");
@@ -128,10 +127,10 @@ public class FrmIngresar extends javax.swing.JFrame {
                 contraseña = rs.getString("password");
                 id = rs.getString("id_user");
                 nombre = rs.getString("name");
-                usuario = new Usuario(id, nombre, correo);  
+                Sesion.InitSesion(new Usuario(id, nombre, correo));
                 if(txtClave.getText().equals(contraseña)){
                 con.Desconectar();
-                ContactApp.CambiarFormulario(this, new FrmPrincipal(usuario));
+                ContactApp.CambiarFormulario(this, new FrmPrincipal());
                 }else {
                     JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
                 }
