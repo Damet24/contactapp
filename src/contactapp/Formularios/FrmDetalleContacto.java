@@ -28,7 +28,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFotoUsuario = new Fondo();
+        pnlFotoUsuario = new Fondo("");
         lblNombres = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         pnlDivisor = new javax.swing.JPanel();

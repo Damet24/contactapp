@@ -114,7 +114,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pnlFotoUsuario">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo(&quot;&quot;)"/>
       </AuxValues>
 
       <Layout>
