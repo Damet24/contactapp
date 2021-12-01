@@ -28,6 +28,7 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         lblNombre = new javax.swing.JLabel();
         lblNumero = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
+        btnDetalles1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(808, 100));
 
@@ -72,6 +73,14 @@ public class FrmContactoModelo extends javax.swing.JPanel {
             }
         });
 
+        btnDetalles1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDetalles1.setText("Compartir");
+        btnDetalles1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalles1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,7 +92,9 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblNumero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                .addComponent(btnDetalles1)
+                .addGap(10, 10, 10)
                 .addComponent(btnDetalles)
                 .addGap(10, 10, 10)
                 .addComponent(btnEliminar)
@@ -108,8 +119,9 @@ public class FrmContactoModelo extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEliminar)
                             .addComponent(btnEditar)
-                            .addComponent(btnDetalles))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnDetalles)
+                            .addComponent(btnDetalles1))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,9 +148,18 @@ public class FrmContactoModelo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDetallesActionPerformed
 
+    private void btnDetalles1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalles1ActionPerformed
+        try{
+            ContactApp.CambiarFormulario(root, new FrmCompartir());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnDetalles1ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalles;
+    private javax.swing.JButton btnDetalles1;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel lblNombre;

@@ -206,6 +206,11 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
 
         btnEditar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditar1.setText("Compartir");
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,6 +309,15 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+        try{
+            con.Desconectar();
+            ContactApp.CambiarFormulario(this, new FrmCompartir());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditar1ActionPerformed
     
     public void ObtenerDatos(){
         try{
