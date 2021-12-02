@@ -80,6 +80,11 @@ public class FrmCompartir extends javax.swing.JFrame {
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Receptor:");
@@ -173,6 +178,11 @@ public class FrmCompartir extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El receptor no existe", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCompartirActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        con.Desconectar();
+        ContactApp.CambiarFormulario(this, new FrmPrincipal());
+    }//GEN-LAST:event_btnCancelarActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

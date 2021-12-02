@@ -10,7 +10,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     Conector con;
     Statement stmt;
     Connection reg;
-    String id_contact, id_number;
+    String id_contact, id_number, nombre;    
     
     public FrmDetalleContacto(String id_contact, String id_number) {
         initComponents();
@@ -311,12 +311,12 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompartirActionPerformed
-//        try{
-//            con.Desconectar();
-//            ContactApp.CambiarFormulario(this, new FrmCompartir());
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            con.Desconectar();
+            ContactApp.CambiarFormulario(this, new FrmCompartir(nombre, lblTelefonoPersonal.getText(), Integer.parseInt(id_contact)));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnCompartirActionPerformed
     
     public void ObtenerDatos(){
@@ -327,6 +327,7 @@ public class FrmDetalleContacto extends javax.swing.JFrame {
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address (" + rs.getInt("id_contact") + ");");
                 while(rs2.next()){
+                    nombre = rs.getString("name") + " " + rs.getString("last_name");
                     lblNombres.setText(rs.getString("name") + " " + rs.getString("second_name"));
                     lblApellidos.setText(rs.getString("last_name") + " " + rs.getString("second_last_name"));
                     if("Personal".equals(rs2.getString("tag_numbers"))){

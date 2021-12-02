@@ -31,6 +31,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnNuevoContacto = new javax.swing.JButton();
         btnInbox = new javax.swing.JButton();
+        btnContInbox = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MainPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -89,6 +90,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnContInbox.setBackground(new java.awt.Color(255, 102, 102));
+        btnContInbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnContInbox.setPreferredSize(new java.awt.Dimension(75, 25));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -101,8 +106,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
+                .addComponent(btnContInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(btnInbox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +119,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -124,7 +132,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MainPane.setLayout(MainPaneLayout);
         MainPaneLayout.setHorizontalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 936, Short.MAX_VALUE)
+            .addGap(0, 986, Short.MAX_VALUE)
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,9 +211,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCantidad)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,11 +287,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
             btnInbox.setText("Contactos");
             txtBuscar.setText("Contactos Compartidos");
             txtBuscar.setEnabled(false);
+            btnContInbox.setEnabled(false);            
         }
         else{
             btnInbox.setText("Inbox");
             txtBuscar.setText("");
-            txtBuscar.setEnabled(true);            
+            txtBuscar.setEnabled(true);     
+            btnContInbox.setEnabled(true);
         }
     }
 
@@ -338,6 +346,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             ShowPanel(new JPanel(), 0, 100 * cont, 100);
             MainPane.setPreferredSize(new Dimension(916, 100 * cont));
             CantidadContactos();
+            ContInbox();
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -366,7 +375,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
             ShowPanel(new JPanel(), 0, 156 * cont, 156);
             MainPane.setPreferredSize(new Dimension(916, 156 * cont));
-            lblCantidad.setText(cont + "");            
+            lblCantidad.setText(cont + "");    
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void ContInbox(){
+        try{
+            stmt = reg.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT count(id_inbox) as 'amount' FROM inbox WHERE fk_user_receiver = '" + Sesion.getUserId() + "';");
+            if(rs.next()) {
+                btnContInbox.setText(rs.getString("amount"));
+                if(rs.getInt("amount") == 0) btnContInbox.setBackground(Color.gray);                
+            }
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -482,6 +505,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel MainPane;
     private javax.swing.JMenuItem VerReporte;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnContInbox;
     private javax.swing.JButton btnInbox;
     private javax.swing.JButton btnNuevoContacto;
     private javax.swing.JLabel jLabel1;
