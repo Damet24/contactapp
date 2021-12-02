@@ -35,7 +35,7 @@ public class FrmCompartir extends javax.swing.JFrame {
         btnCompartir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txtDestinatario = new javax.swing.JTextField();
+        btnReceptor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Compartir Contacto");
@@ -59,7 +59,7 @@ public class FrmCompartir extends javax.swing.JFrame {
         lblNombre.setText("jLabel4");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Información:");
+        jLabel5.setText("Información del contacto:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Descripción:");
@@ -82,9 +82,9 @@ public class FrmCompartir extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Destinatario:");
+        jLabel7.setText("Receptor:");
 
-        txtDestinatario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReceptor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +93,7 @@ public class FrmCompartir extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
@@ -129,7 +129,7 @@ public class FrmCompartir extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel7)
                 .addGap(20, 20, 20)
-                .addComponent(txtDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
                 .addGap(20, 20, 20)
@@ -151,21 +151,26 @@ public class FrmCompartir extends javax.swing.JFrame {
 
     private void btnCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompartirActionPerformed
         try{
-            stmt = reg.createStatement();
-            ResultSet rs = stmt.executeQuery("CALL select_user ('" + txtDestinatario.getText() + "');");
-            if(rs.next()){
-                id_user_receiver = rs.getInt("id_user");                
-            }
-            rs.close();
-            stmt.close();
-            Statement stmt2 = reg.createStatement();
-            stmt2.executeUpdate("CALL insert_inbox (" + id_user_receiver + ", " + Sesion.getUserId() + ", " + id_contact + ", '" + txtDescripcion.getText() + "');");
-            stmt2.close();
-            JOptionPane.showMessageDialog(this, "Contacto compartido", "Hecho", JOptionPane.INFORMATION_MESSAGE);
-            con.Desconectar();
-            ContactApp.CambiarFormulario(this, new FrmPrincipal());
+            if(!"".equals(btnReceptor.getText())){
+                stmt = reg.createStatement();
+                ResultSet rs = stmt.executeQuery("CALL select_user ('" + btnReceptor.getText() + "');");
+                if(rs.next()){
+                    id_user_receiver = rs.getInt("id_user");                
+                }
+                rs.close();
+                stmt.close();
+                Statement stmt2 = reg.createStatement();
+                stmt2.executeUpdate("CALL insert_inbox (" + id_user_receiver + ", " + Sesion.getUserId() + ", " + id_contact + ", '" + txtDescripcion.getText() + "');");
+                stmt2.close();
+                JOptionPane.showMessageDialog(this, "Contacto compartido", "Hecho", JOptionPane.INFORMATION_MESSAGE);
+                con.Desconectar();
+                ContactApp.CambiarFormulario(this, new FrmPrincipal());
+            }else{
+                JOptionPane.showMessageDialog(this, "El receptor es obligatorio", "Error", JOptionPane.WARNING_MESSAGE);
+            }            
         }catch(SQLException e){
-            System.out.println(e);            
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this, "El receptor no existe", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCompartirActionPerformed
     
@@ -204,6 +209,7 @@ public class FrmCompartir extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCompartir;
+    private javax.swing.JTextField btnReceptor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -213,6 +219,5 @@ public class FrmCompartir extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextArea txtDescripcion;
-    private javax.swing.JTextField txtDestinatario;
     // End of variables declaration//GEN-END:variables
 }
