@@ -351,9 +351,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address ('" + rs.getString("fk_contact") + "');");
                 ResultSet rs3 = stmt3.executeQuery("CALL select_contact ('" + rs.getString("fk_contact") + "');");                
                 if(rs3.next() && rs2.next()){
-                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this), 0, 100 * cont);
+                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description")), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this), 0, 100 * cont);
+                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description")), 0, 100 * cont);
                 rs3.close();
                 stmt3.close();
                 rs2.close();
