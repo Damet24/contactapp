@@ -102,7 +102,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnNuevoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btnInbox)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +124,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MainPane.setLayout(MainPaneLayout);
         MainPaneLayout.setHorizontalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 878, Short.MAX_VALUE)
+            .addGap(0, 936, Short.MAX_VALUE)
         );
         MainPaneLayout.setVerticalGroup(
             MainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,13 +197,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCantidad)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,11 +266,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
         CambiarBoton();
-        if(inInbox == false) {
+        if(inInbox == false) {            
             ListarUsuariosCompartidos();
             inInbox = true;
         }
-        else{
+        else{            
             ListarUsuarios();
             inInbox = false;
         }
@@ -277,14 +279,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public void CambiarBoton(){
         if(inInbox == false) {
             btnInbox.setText("Contactos");
+            txtBuscar.setText("Contactos Compartidos");
+            txtBuscar.setEnabled(false);
         }
         else{
             btnInbox.setText("Inbox");
+            txtBuscar.setText("");
+            txtBuscar.setEnabled(true);            
         }
     }
 
     public void BuscarContactos(){
-        CambiarBoton();
         try{
             if(!"".equals(txtBuscar.getText())){
                 stmt = reg.createStatement();
@@ -295,15 +300,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     Statement stmt2 = reg.createStatement();
                     ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                     if(rs2.next()){
-                        ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
+                        ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont, 100);
                     }
-                    else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
+                    else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont, 100);
                     rs2.close();
                     stmt2.close();
                     cont++;      
                 }
-                ShowPanel(new JPanel(), 0, 100 * cont);
-                MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+                ShowPanel(new JPanel(), 0, 100 * cont, 100);
+                MainPane.setPreferredSize(new Dimension(916, 100 * cont));
                 lblCantidad.setText(cont + "");
             }else {
                 ListarUsuarios();
@@ -314,7 +319,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     
     public void ListarUsuarios(){
-        CambiarBoton();
         try{
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("CALL select_contacts(" + Sesion.getUserId() + ");");
@@ -324,15 +328,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 Statement stmt2 = reg.createStatement();
                 ResultSet rs2 = stmt2.executeQuery("call select_numbers_emails_address('" + rs.getString("id_contact") + "');");
                 if(rs2.next()){
-                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
+                    ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont, 100);
                 }
-                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont);
+                else ShowPanel(new FrmContactoModelo(rs.getString("name") + " " + rs.getString("last_name"), rs2.getString("number"),rs.getString("id_contact"), rs2.getString("id_number"), this), 0, 100 * cont, 100);
                 rs2.close();
                 stmt2.close();
                 cont++;
             }
-            ShowPanel(new JPanel(), 0, 100 * cont);
-            MainPane.setPreferredSize(new Dimension(700, 100 * cont));
+            ShowPanel(new JPanel(), 0, 100 * cont, 100);
+            MainPane.setPreferredSize(new Dimension(916, 100 * cont));
             CantidadContactos();
         }catch(SQLException e){
             System.out.println(e);
@@ -351,25 +355,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address ('" + rs.getString("fk_contact") + "');");
                 ResultSet rs3 = stmt3.executeQuery("CALL select_contact ('" + rs.getString("fk_contact") + "');");                
                 if(rs3.next() && rs2.next()){
-                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description")), 0, 100 * cont);
+                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description"), Sesion.getUserName()), 0, 156 * cont, 156);
                 }
-                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description")), 0, 100 * cont);
+                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this, rs.getString("description"), Sesion.getUserName()), 0, 156 * cont, 156);
                 rs3.close();
                 stmt3.close();
                 rs2.close();
                 stmt2.close();
                 cont++;
             }
-            ShowPanel(new JPanel(), 0, 100 * cont);
-            MainPane.setPreferredSize(new Dimension(700, 100 * cont));
-            CantidadContactos();
+            ShowPanel(new JPanel(), 0, 156 * cont, 156);
+            MainPane.setPreferredSize(new Dimension(916, 156 * cont));
+            lblCantidad.setText(cont + "");            
         }catch(SQLException e){
             System.out.println(e);
         }
     }
     
-    public void ShowPanel(JPanel p, int x, int y){
-        p.setSize(798, 100);
+    public void ShowPanel(JPanel p, int x, int y, int height){
+        p.setSize(916, height);
         p.setLocation(x, y);
         MainPane.add(p, BorderLayout.CENTER);
         MainPane.revalidate();
