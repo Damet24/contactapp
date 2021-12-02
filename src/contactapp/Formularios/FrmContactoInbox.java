@@ -6,13 +6,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FrmContactoInbox extends javax.swing.JPanel {
 
-    String txtruta;
+    String txtruta, id, id_inbox, reciver, transmiter;
     FrmPrincipal root;
     
-    public FrmContactoInbox(String nombre, String numero, FrmPrincipal root) {
+    public FrmContactoInbox(String nombre, String numero, String re, String trans, String id, String id_in, FrmPrincipal root) {
         initComponents();
         lblNombre.setText(nombre);
         lblNumero.setText(numero);
+        reciver = re;
+        transmiter = trans;
+        this.id = id;
+        id_inbox = id_in;
         this.root = root;
     }
 
@@ -28,6 +32,11 @@ public class FrmContactoInbox extends javax.swing.JPanel {
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         pnlFotoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -54,6 +63,11 @@ public class FrmContactoInbox extends javax.swing.JPanel {
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,6 +122,14 @@ public class FrmContactoInbox extends javax.swing.JPanel {
             pnlFotoUsuario.repaint();
         }
     }//GEN-LAST:event_pnlFotoUsuarioMouseClicked
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        root.AgregarCotacto(id, reciver, transmiter, id_inbox);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        root.EliminarCantactoCompartido(id_inbox);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
