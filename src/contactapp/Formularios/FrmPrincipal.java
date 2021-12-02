@@ -263,19 +263,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInboxActionPerformed
+        CambiarBoton();
         if(inInbox == false) {
             ListarUsuariosCompartidos();
             inInbox = true;
-            btnInbox.setText("Contactos");
         }
         else{
             ListarUsuarios();
             inInbox = false;
-            btnInbox.setText("Inbox");
         }
     }//GEN-LAST:event_btnInboxActionPerformed
 
+    public void CambiarBoton(){
+        if(inInbox == false) {
+            btnInbox.setText("Contactos");
+        }
+        else{
+            btnInbox.setText("Inbox");
+        }
+    }
+
     public void BuscarContactos(){
+        CambiarBoton();
         try{
             if(!"".equals(txtBuscar.getText())){
                 stmt = reg.createStatement();
@@ -305,6 +314,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     
     public void ListarUsuarios(){
+        CambiarBoton();
         try{
             stmt = reg.createStatement(); 
             ResultSet rs = stmt.executeQuery("CALL select_contacts(" + Sesion.getUserId() + ");");
@@ -341,9 +351,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address ('" + rs.getString("fk_contact") + "');");
                 ResultSet rs3 = stmt3.executeQuery("CALL select_contact ('" + rs.getString("fk_contact") + "');");                
                 if(rs3.next() && rs2.next()){
-                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), this), 0, 100 * cont);
+                    ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this), 0, 100 * cont);
                 }
-                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), this), 0, 100 * cont);
+                else ShowPanel(new FrmContactoInbox(rs3.getString("name") + " " + rs3.getString("last_name"), rs2.getString("number"), rs.getString("fk_user_receiver"), rs.getString("fk_user_transmitter"), rs.getString("fk_contact"), rs.getString("id_inbox"), this), 0, 100 * cont);
                 rs3.close();
                 stmt3.close();
                 rs2.close();
@@ -427,6 +437,41 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 new FrmPrincipal().setVisible(true);
             }
         });
+    }
+    
+    public void AgregarCotacto(String id_contact, String reciver, String transmiter, String id_inbox){
+        System.out.println("inbox index " + id_inbox);
+        try{
+            stmt = reg.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `contacts` where id_contact = '" + id_contact + "';");
+            if(rs.next()){
+                Statement stmt2 = reg.createStatement();
+                ResultSet rs2 = stmt2.executeQuery("CALL select_numbers_emails_address ('" + id_contact + "');");
+                String number = "";
+                if(rs2.next()) number = rs2.getString("number");
+                if(rs2.next()){
+                    Statement stmt3 = reg.createStatement();
+                    String sql = "CALL insert_contact ('" + rs.getString("name") + "', '" + rs.getString("second_name") + "', '" + rs.getString("last_name") + "', '" + rs.getString("second_last_name") + "', 'Personal', '" + number + "', 'Laboral', '" + rs2.getString("number") + "', 'Personal', '" + rs2.getString("email") + "', 'Personal', '" + rs2.getString("address") + "', " + reciver + ");";
+                    stmt3.executeQuery(sql);
+                    
+                    Statement stmt4 = reg.createStatement();
+                    stmt4.execute("DELETE FROM `inbox` WHERE `inbox`.`id_inbox` = '" + id_inbox + "';");
+                    ListarUsuariosCompartidos();
+                }
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void EliminarCantactoCompartido(String id_inbox){
+        try{
+            stmt = reg.createStatement();
+            stmt.execute("DELETE FROM `inbox` WHERE `inbox`.`id_inbox` = '" + id_inbox + "';");
+            ListarUsuariosCompartidos();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
