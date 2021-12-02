@@ -170,7 +170,7 @@ public class FrmCompartir extends javax.swing.JFrame {
             }            
         }catch(SQLException e){
             System.out.println(e);
-            JOptionPane.showMessageDialog(this, "El destinatario no existe", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El receptor no existe", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCompartirActionPerformed
     
